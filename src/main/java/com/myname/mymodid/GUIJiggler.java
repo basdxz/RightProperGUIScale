@@ -36,7 +36,11 @@ public final class GUIJiggler {
     }
 
     public static int guiScaleAsInt() {
-        return MathHelper.ceiling_float_int(GUI_SCALE);
+        return guiScaleAsInt(GUI_SCALE);
+    }
+
+    public static int guiScaleAsInt(float guiScale) {
+        return MathHelper.ceiling_float_int(guiScale);
     }
 
     private static ScaledResolution newScaledResolution(@NonNull Minecraft minecraft) {
