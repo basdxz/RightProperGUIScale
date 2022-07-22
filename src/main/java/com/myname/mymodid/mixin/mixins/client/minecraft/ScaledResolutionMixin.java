@@ -7,14 +7,10 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.myname.mymodid.GUIJiggler.GUI_SCALE_STEP;
-import static com.myname.mymodid.GUIJiggler.guiScaleAsFloat;
+import static com.myname.mymodid.GUIJiggler.*;
 
 @Mixin(ScaledResolution.class)
 public abstract class ScaledResolutionMixin {
-    private static final int MIN_SCALED_WIDTH = 320;
-    private static final int MIN_SCALED_HEIGHT = 240;
-
     @Shadow
     private int scaledWidth;
     @Shadow

@@ -11,7 +11,10 @@ import net.minecraft.util.MathHelper;
 //TODO: Proper incremental scaling
 @UtilityClass
 public final class GUIJiggler {
-    public static final float GUI_SCALE_MIN = 0.20F;
+    public static final int MIN_SCALED_WIDTH = 320;
+    public static final int MIN_SCALED_HEIGHT = 240;
+
+    public static final float GUI_SCALE_MIN = 1F;
     public static final float GUI_SCALE_MAX = 10F;
     public static final float GUI_SCALE_STEP = 0.1F;
     public static final float GUI_SCALE_DEFAULT = 4.0F;
