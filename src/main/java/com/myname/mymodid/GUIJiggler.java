@@ -17,16 +17,27 @@ public final class GUIJiggler {
     public static final float GUI_SCALE_DEFAULT = 4.0F;
 
     private static float GUI_SCALE = GUI_SCALE_DEFAULT;
+    private static float TEMP_GUI_SCALE = GUI_SCALE;
 
     public static String guiScaleSliderLabel() {
-        return I18n.format(GameSettings.Options.GUI_SCALE.getEnumString()) + ": " + String.format("%.1f", GUI_SCALE);
+        return I18n.format(GameSettings.Options.GUI_SCALE.getEnumString()) + ": " +
+               String.format("%.1f", TEMP_GUI_SCALE);
     }
 
-    public static void setGuiScale(float scale) {
-        GUI_SCALE = scale;
+    public static void setTempGuiScale(float guiScale) {
+        TEMP_GUI_SCALE = guiScale;
     }
 
-    public static void updateMinecraftResolutionScale() {
+    public static void updateGuiScale() {
+        pushTempGuiScale();
+        updateMinecraftResolutionScale();
+    }
+
+    private static void pushTempGuiScale() {
+        GUI_SCALE = TEMP_GUI_SCALE;
+    }
+
+    private static void updateMinecraftResolutionScale() {
         val minecraft = Minecraft.getMinecraft();
         minecraft.gameSettings.guiScale = guiScaleAsInt();
         val scaledResolution = newScaledResolution(minecraft);
@@ -36,11 +47,7 @@ public final class GUIJiggler {
     }
 
     public static int guiScaleAsInt() {
-        return guiScaleAsInt(GUI_SCALE);
-    }
-
-    public static int guiScaleAsInt(float guiScale) {
-        return MathHelper.ceiling_float_int(guiScale);
+        return MathHelper.ceiling_float_int(GUI_SCALE);
     }
 
     private static ScaledResolution newScaledResolution(@NonNull Minecraft minecraft) {

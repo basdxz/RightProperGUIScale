@@ -35,7 +35,7 @@ public abstract class GuiVideoSettingsMixin {
             require = 1)
     private void redirectScaledResolutionUpdate(int mousePosX, int mousePosY, int mouseButton, CallbackInfo ci) {
         if (mouseReleased(mouseButton))
-            GUIJiggler.updateMinecraftResolutionScale();
+            GUIJiggler.updateGuiScale();
         ci.cancel();
     }
 

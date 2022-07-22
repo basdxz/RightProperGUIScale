@@ -40,7 +40,7 @@ public abstract class GameSettingMixin {
             require = 1)
     private void setGuiScaleValue(GameSettings.Options option, float value, CallbackInfo ci) {
         if (isScaleOption(option)) {
-            GUIJiggler.setGuiScale(value);
+            GUIJiggler.setTempGuiScale(value);
             ci.cancel();
         }
     }
@@ -72,7 +72,7 @@ public abstract class GameSettingMixin {
               require = 1)
     private int loadGuiScale(String guiScaleString) {
         float guiScale = Float.parseFloat(guiScaleString);
-        GUIJiggler.setGuiScale(guiScale);
+        GUIJiggler.setTempGuiScale(guiScale);
         return MathHelper.ceiling_float_int(guiScale);
     }
 

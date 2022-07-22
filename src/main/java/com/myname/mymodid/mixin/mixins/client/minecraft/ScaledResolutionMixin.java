@@ -7,6 +7,9 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
+import static com.myname.mymodid.GUIJiggler.GUI_SCALE_STEP;
+import static com.myname.mymodid.GUIJiggler.guiScaleAsFloat;
+
 @Mixin(ScaledResolution.class)
 public abstract class ScaledResolutionMixin {
     private static final int MIN_SCALED_WIDTH = 320;
@@ -22,44 +25,50 @@ public abstract class ScaledResolutionMixin {
     private double scaledHeightD;
     @Shadow
     private int scaleFactor;
+    private float scaleFactorFloat;
 
     @Inject(method = "<init>(Lnet/minecraft/client/Minecraft;II)V",
             at = @At(value = "RETURN"),
             require = 1)
     private void deferredConstructor(Minecraft minecraft, int width, int height, CallbackInfo ci) {
-        scaleFactor = 1;
-        int guiScale = minecraft.gameSettings.guiScale;
+        scaleFactorFloat = 1;
 
-        if (guiScale == 0)
-            guiScale = 1000;
-
-        initScaleFactor(guiScale, width, height);
+        initScaleFactorFloat(guiScaleAsFloat(), width, height);
         initScaledWidth(width);
         initScaledHeight(height);
+        initScaleFactor();
     }
 
-    private void initScaleFactor(int guiScale, int width, int height) {
-        while (scaleFactor < guiScale &&
+    private void initScaleFactorFloat(float guiScale, int width, int height) {
+        while (scaleFactorFloat < guiScale &&
                nextScaledWidth(width) >= MIN_SCALED_WIDTH &&
                nextScaledHeight(height) >= MIN_SCALED_HEIGHT)
-            ++scaleFactor;
+            incrementScaleFactor();
     }
 
     private int nextScaledWidth(int width) {
-        return width / (scaleFactor + 1);
+        return MathHelper.ceiling_double_int(width / (scaleFactorFloat + GUI_SCALE_STEP));
     }
 
     private int nextScaledHeight(int height) {
-        return height / (scaleFactor + 1);
+        return MathHelper.ceiling_double_int(height / (scaleFactorFloat + GUI_SCALE_STEP));
+    }
+
+    private void incrementScaleFactor() {
+        scaleFactorFloat += GUI_SCALE_STEP;
     }
 
     private void initScaledWidth(int width) {
-        scaledWidthD = (double) width / (double) scaleFactor;
+        scaledWidthD = width / scaleFactorFloat;
         scaledWidth = MathHelper.ceiling_double_int(scaledWidthD);
     }
 
     private void initScaledHeight(int height) {
-        scaledHeightD = (double) height / (double) scaleFactor;
+        scaledHeightD = height / scaleFactorFloat;
         scaledHeight = MathHelper.ceiling_double_int(scaledHeightD);
+    }
+
+    private void initScaleFactor() {
+        scaleFactor = MathHelper.ceiling_double_int(scaleFactorFloat);
     }
 }
