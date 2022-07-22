@@ -3,9 +3,17 @@ package com.myname.mymodid;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import lombok.*;
 import lombok.experimental.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
+import net.minecraft.util.MathHelper;
 import org.apache.commons.lang3.reflect.FieldUtils;
 
+//TODO: Applying scale changes
+//TODO: Saving scale
+//TODO: Loading scale
+//TODO: Proper incremental scaling
 @UtilityClass
 public final class GUIJiggler {
     //TODO: better naming, this is not readable
@@ -18,6 +26,7 @@ public final class GUIJiggler {
     private static final String[] OPTIONS_VALUE_STEP_FIELD_NAMES = new String[]{"valueStep", "field_148270_M"};
     private static final float OPTIONS_ENUM_FLOAT_VALUE_MAX_GUI_SCALE_DEFAULT = 0F;
 
+    private static float GUI_SCALE = 1F;
 
     public static void init() {
         guiScaleButtonToSlider();
@@ -38,7 +47,7 @@ public final class GUIJiggler {
                  OPTIONS_VALUE_MAX_FIELD_NAMES);
         setField(GameSettings.Options.class,
                  GameSettings.Options.GUI_SCALE,
-                 1F,
+                 0.25F,
                  OPTIONS_VALUE_STEP_FIELD_NAMES);
     }
 
@@ -50,5 +59,30 @@ public final class GUIJiggler {
         val field = ReflectionHelper.findField(clazz, fieldNameAliases);
         FieldUtils.removeFinalModifier(field);
         FieldUtils.writeField(field, target, value);
+    }
+
+    public static String guiScaleSliderLabel() {
+        return I18n.format(GameSettings.Options.GUI_SCALE.getEnumString());
+    }
+
+    public static void setGuiScale(float scale) {
+        GUI_SCALE = scale;
+    }
+
+    public static void updateMinecraftResolutionScale() {
+        val minecraft = Minecraft.getMinecraft();
+        minecraft.gameSettings.guiScale = MathHelper.ceiling_float_int(GUI_SCALE);
+        val scaledResolution = newScaledResolution(minecraft);
+        minecraft.currentScreen.setWorldAndResolution(minecraft,
+                                                      scaledResolution.getScaledWidth(),
+                                                      scaledResolution.getScaledHeight());
+    }
+
+    private static ScaledResolution newScaledResolution(@NonNull Minecraft minecraft) {
+        return new ScaledResolution(minecraft, minecraft.displayWidth, minecraft.displayHeight);
+    }
+
+    public static float getGuiScale() {
+        return GUI_SCALE;
     }
 }
