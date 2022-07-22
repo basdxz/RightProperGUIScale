@@ -1,4 +1,4 @@
-package com.myname.mymodid.mixin.plugin;
+package com.github.basdxz.rightproperguiscale.mixin.plugin;
 
 import com.falsepattern.lib.mixin.IMixin;
 import com.falsepattern.lib.mixin.ITargetedMod;

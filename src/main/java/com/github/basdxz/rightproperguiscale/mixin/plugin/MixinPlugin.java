@@ -1,9 +1,9 @@
-package com.myname.mymodid.mixin.plugin;
+package com.github.basdxz.rightproperguiscale.mixin.plugin;
 
 import com.falsepattern.lib.mixin.IMixin;
 import com.falsepattern.lib.mixin.IMixinPlugin;
 import com.falsepattern.lib.mixin.ITargetedMod;
-import com.myname.mymodid.Tags;
+import com.github.basdxz.rightproperguiscale.Tags;
 import lombok.*;
 import org.apache.logging.log4j.Logger;
 

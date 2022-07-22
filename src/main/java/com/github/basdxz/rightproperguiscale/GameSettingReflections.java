@@ -1,12 +1,10 @@
-package com.myname.mymodid;
+package com.github.basdxz.rightproperguiscale;
 
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import lombok.*;
 import lombok.experimental.*;
 import net.minecraft.client.settings.GameSettings;
 import org.apache.commons.lang3.reflect.FieldUtils;
-
-import static com.myname.mymodid.GUIJiggler.*;
 
 @UtilityClass
 public final class GameSettingReflections {
@@ -32,15 +30,15 @@ public final class GameSettingReflections {
     }
 
     private static void setGuiScaleSliderMin() {
-        setGuiScaleOptionField(GUI_SCALE_MIN, VALUE_MIN_FIELD_NAMES);
+        setGuiScaleOptionField(GUIJiggler.GUI_SCALE_MIN, VALUE_MIN_FIELD_NAMES);
     }
 
     private static void setGuiScaleSliderMax() {
-        setGuiScaleOptionField(GUI_SCALE_MAX, VALUE_MAX_FIELD_NAMES);
+        setGuiScaleOptionField(GUIJiggler.GUI_SCALE_MAX, VALUE_MAX_FIELD_NAMES);
     }
 
     private static void setGuiScaleSliderStep() {
-        setGuiScaleOptionField(GUI_SCALE_STEP, VALUE_STEP_FIELD_NAMES);
+        setGuiScaleOptionField(GUIJiggler.GUI_SCALE_STEP, VALUE_STEP_FIELD_NAMES);
     }
 
     @SneakyThrows

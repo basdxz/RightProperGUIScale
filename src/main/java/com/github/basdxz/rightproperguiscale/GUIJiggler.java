@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.github.basdxz.rightproperguiscale;
 
 import lombok.*;
 import lombok.experimental.*;
@@ -8,7 +8,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.MathHelper;
 
-//TODO: Proper incremental scaling
 @UtilityClass
 public final class GUIJiggler {
     public static final int MIN_SCALED_WIDTH = 320;

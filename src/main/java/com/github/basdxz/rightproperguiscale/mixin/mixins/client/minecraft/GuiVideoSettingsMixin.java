@@ -1,6 +1,6 @@
-package com.myname.mymodid.mixin.mixins.client.minecraft;
+package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
 
-import com.myname.mymodid.GUIJiggler;
+import com.github.basdxz.rightproperguiscale.GUIJiggler;
 import net.minecraft.client.gui.GuiVideoSettings;
 import org.spongepowered.asm.lib.Opcodes;
 import org.spongepowered.asm.mixin.*;

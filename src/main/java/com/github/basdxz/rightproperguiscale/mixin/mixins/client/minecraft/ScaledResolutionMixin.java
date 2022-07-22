@@ -1,13 +1,12 @@
-package com.myname.mymodid.mixin.mixins.client.minecraft;
+package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
 
+import com.github.basdxz.rightproperguiscale.GUIJiggler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.MathHelper;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
-
-import static com.myname.mymodid.GUIJiggler.*;
 
 @Mixin(ScaledResolution.class)
 public abstract class ScaledResolutionMixin {
@@ -29,7 +28,7 @@ public abstract class ScaledResolutionMixin {
     private void deferredConstructor(Minecraft minecraft, int width, int height, CallbackInfo ci) {
         scaleFactorFloat = 1;
 
-        initScaleFactorFloat(guiScaleAsFloat(), width, height);
+        initScaleFactorFloat(GUIJiggler.guiScaleAsFloat(), width, height);
         initScaledWidth(width);
         initScaledHeight(height);
         initScaleFactor();
@@ -37,21 +36,21 @@ public abstract class ScaledResolutionMixin {
 
     private void initScaleFactorFloat(float guiScale, int width, int height) {
         while (scaleFactorFloat < guiScale &&
-               nextScaledWidth(width) >= MIN_SCALED_WIDTH &&
-               nextScaledHeight(height) >= MIN_SCALED_HEIGHT)
+               nextScaledWidth(width) >= GUIJiggler.MIN_SCALED_WIDTH &&
+               nextScaledHeight(height) >= GUIJiggler.MIN_SCALED_HEIGHT)
             incrementScaleFactor();
     }
 
     private int nextScaledWidth(int width) {
-        return MathHelper.ceiling_double_int(width / (scaleFactorFloat + GUI_SCALE_STEP));
+        return MathHelper.ceiling_double_int(width / (scaleFactorFloat + GUIJiggler.GUI_SCALE_STEP));
     }
 
     private int nextScaledHeight(int height) {
-        return MathHelper.ceiling_double_int(height / (scaleFactorFloat + GUI_SCALE_STEP));
+        return MathHelper.ceiling_double_int(height / (scaleFactorFloat + GUIJiggler.GUI_SCALE_STEP));
     }
 
     private void incrementScaleFactor() {
-        scaleFactorFloat += GUI_SCALE_STEP;
+        scaleFactorFloat += GUIJiggler.GUI_SCALE_STEP;
     }
 
     private void initScaledWidth(int width) {

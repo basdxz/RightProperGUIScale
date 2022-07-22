@@ -2,13 +2,13 @@
     {
         "modid": "${modId}",
         "name": "${modName}",
-        "description": "An example mod for Minecraft 1.7.10 with Forge focussed on a stable setup.",
+        "description": "A very well functioning GUI scale mod that doesn't suck.",
         "version": "${modVersion}",
         "mcversion": "${minecraftVersion}",
-        "url": "https://github.com/SinTh0r4s/MyMod",
+        "url": "https://github.com/basdxz/RightProperGUIScale",
         "updateUrl": "",
         "authorList": [
-            "SinTho0r4s"
+            "basdxz"
         ],
         "credits": "",
         "logoFile": "",
