@@ -66,7 +66,7 @@ public final class GUIJiggler {
     }
 
     public static String guiScaleSliderLabel() {
-        return I18n.format(GameSettings.Options.GUI_SCALE.getEnumString()) + ": " + GUI_SCALE;
+        return I18n.format(GameSettings.Options.GUI_SCALE.getEnumString()) + ": " + String.format("%.1f", GUI_SCALE);
     }
 
     public static void setGuiScale(float scale) {
