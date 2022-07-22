@@ -8,11 +8,21 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.myname.mymodid.GUIJiggler.getGuiScale;
-import static com.myname.mymodid.GUIJiggler.guiScaleSliderLabel;
+import static com.myname.mymodid.GUIJiggler.*;
 
 @Mixin(GameSettings.class)
 public abstract class GameSettingMixin {
+    @Shadow
+    public int guiScale;
+
+    @Inject(method = {"<init>()V",
+                      "<init>(Lnet/minecraft/client/Minecraft;Ljava/io/File;)V"},
+            at = @At(value = "RETURN"),
+            require = 1)
+    private void guiScaleLabel(CallbackInfo ci) {
+        guiScale = guiScaleAsInt();
+    }
+
     @Inject(method = "getKeyBinding(Lnet/minecraft/client/settings/GameSettings$Options;)Ljava/lang/String;",
             at = @At(value = "HEAD"),
             cancellable = true,
@@ -41,7 +51,7 @@ public abstract class GameSettingMixin {
             require = 1)
     private void getGuiScaleValue(GameSettings.Options option, CallbackInfoReturnable<Float> cir) {
         if (isScaleOption(option)) {
-            cir.setReturnValue(GUIJiggler.getGuiScale());
+            cir.setReturnValue(GUIJiggler.guiScaleAsFloat());
             cir.cancel();
         }
     }
@@ -77,6 +87,6 @@ public abstract class GameSettingMixin {
                        target = "Ljava/lang/StringBuilder;append(I)Ljava/lang/StringBuilder;"),
               require = 1)
     private StringBuilder saveGuiScale(StringBuilder instance, int minecraftGuiScale) {
-        return instance.append(getGuiScale());
+        return instance.append(guiScaleAsFloat());
     }
 }

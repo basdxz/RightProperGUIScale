@@ -19,6 +19,7 @@ public final class GUIJiggler {
     public static final float GUI_SCALE_MIN = 0.20F;
     public static final float GUI_SCALE_MAX = 10F;
     public static final float GUI_SCALE_STEP = 0.1F;
+    public static final float GUI_SCALE_DEFAULT = 4.0F;
 
     //TODO: better naming, this is not readable
     private static final String[] OPTIONS_ENUM_FLOAT_FIELD_NAMES = new String[]{"enumFloat", "field_74385_A"};
@@ -30,7 +31,7 @@ public final class GUIJiggler {
     private static final String[] OPTIONS_VALUE_STEP_FIELD_NAMES = new String[]{"valueStep", "field_148270_M"};
     private static final float OPTIONS_ENUM_FLOAT_VALUE_MAX_GUI_SCALE_DEFAULT = 0F;
 
-    private static float GUI_SCALE = GUI_SCALE_MAX;
+    private static float GUI_SCALE = GUI_SCALE_DEFAULT;
 
     public static void init() {
         guiScaleButtonToSlider();
@@ -75,18 +76,22 @@ public final class GUIJiggler {
 
     public static void updateMinecraftResolutionScale() {
         val minecraft = Minecraft.getMinecraft();
-        minecraft.gameSettings.guiScale = MathHelper.ceiling_float_int(GUI_SCALE);
+        minecraft.gameSettings.guiScale = guiScaleAsInt();
         val scaledResolution = newScaledResolution(minecraft);
         minecraft.currentScreen.setWorldAndResolution(minecraft,
                                                       scaledResolution.getScaledWidth(),
                                                       scaledResolution.getScaledHeight());
     }
 
+    public static int guiScaleAsInt() {
+        return MathHelper.ceiling_float_int(GUI_SCALE);
+    }
+
     private static ScaledResolution newScaledResolution(@NonNull Minecraft minecraft) {
         return new ScaledResolution(minecraft, minecraft.displayWidth, minecraft.displayHeight);
     }
 
-    public static float getGuiScale() {
+    public static float guiScaleAsFloat() {
         return GUI_SCALE;
     }
 }
