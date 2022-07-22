@@ -16,6 +16,10 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 //TODO: Proper incremental scaling
 @UtilityClass
 public final class GUIJiggler {
+    public static final float GUI_SCALE_MIN = 0.20F;
+    public static final float GUI_SCALE_MAX = 10F;
+    public static final float GUI_SCALE_STEP = 0.1F;
+
     //TODO: better naming, this is not readable
     private static final String[] OPTIONS_ENUM_FLOAT_FIELD_NAMES = new String[]{"enumFloat", "field_74385_A"};
     private static final boolean OPTIONS_ENUM_FLOAT_FIELD_GUI_SCALE_DEFAULT = false;
@@ -26,7 +30,7 @@ public final class GUIJiggler {
     private static final String[] OPTIONS_VALUE_STEP_FIELD_NAMES = new String[]{"valueStep", "field_148270_M"};
     private static final float OPTIONS_ENUM_FLOAT_VALUE_MAX_GUI_SCALE_DEFAULT = 0F;
 
-    private static float GUI_SCALE = 1F;
+    private static float GUI_SCALE = GUI_SCALE_MAX;
 
     public static void init() {
         guiScaleButtonToSlider();
@@ -39,15 +43,15 @@ public final class GUIJiggler {
                  OPTIONS_ENUM_FLOAT_FIELD_NAMES);
         setField(GameSettings.Options.class,
                  GameSettings.Options.GUI_SCALE,
-                 0F,
+                 GUI_SCALE_MIN,
                  OPTIONS_VALUE_MIN_FIELD_NAMES);
         setField(GameSettings.Options.class,
                  GameSettings.Options.GUI_SCALE,
-                 10F,
+                 GUI_SCALE_MAX,
                  OPTIONS_VALUE_MAX_FIELD_NAMES);
         setField(GameSettings.Options.class,
                  GameSettings.Options.GUI_SCALE,
-                 0.25F,
+                 GUI_SCALE_STEP,
                  OPTIONS_VALUE_STEP_FIELD_NAMES);
     }
 
@@ -62,7 +66,7 @@ public final class GUIJiggler {
     }
 
     public static String guiScaleSliderLabel() {
-        return I18n.format(GameSettings.Options.GUI_SCALE.getEnumString());
+        return I18n.format(GameSettings.Options.GUI_SCALE.getEnumString()) + ": " + GUI_SCALE;
     }
 
     public static void setGuiScale(float scale) {
