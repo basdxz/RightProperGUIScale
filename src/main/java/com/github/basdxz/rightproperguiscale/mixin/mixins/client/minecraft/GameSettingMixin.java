@@ -19,7 +19,7 @@ public abstract class GameSettingMixin {
                       "<init>(Lnet/minecraft/client/Minecraft;Ljava/io/File;)V"},
             at = @At(value = "RETURN"),
             require = 1)
-    private void guiScaleLabel(CallbackInfo ci) {
+    private void initGUIScale(CallbackInfo ci) {
         guiScale = guiScaleAsInt();
     }
 
@@ -74,7 +74,7 @@ public abstract class GameSettingMixin {
         float guiScale = Float.parseFloat(guiScaleString);
         GUIJiggler.setTempGuiScale(guiScale);
         updateGuiScale();
-        return guiScaleAsInt();
+        return 0;
     }
 
     @Redirect(method = "saveOptions()V",
