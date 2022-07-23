@@ -1,12 +1,13 @@
 package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
 
-import com.github.basdxz.rightproperguiscale.GUIJiggler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.MathHelper;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
+
+import static com.github.basdxz.rightproperguiscale.GUIJiggler.*;
 
 @Mixin(ScaledResolution.class)
 public abstract class ScaledResolutionMixin {
@@ -26,31 +27,30 @@ public abstract class ScaledResolutionMixin {
             at = @At(value = "RETURN"),
             require = 1)
     private void deferredConstructor(Minecraft minecraft, int width, int height, CallbackInfo ci) {
-        scaleFactorFloat = 1;
-
-        initScaleFactorFloat(GUIJiggler.guiScaleAsFloat(), width, height);
+        initScaleFactorFloat(width, height);
         initScaledWidth(width);
         initScaledHeight(height);
         initScaleFactor();
     }
 
-    private void initScaleFactorFloat(float guiScale, int width, int height) {
-        while (scaleFactorFloat < guiScale &&
-               nextScaledWidth(width) >= GUIJiggler.MIN_SCALED_WIDTH &&
-               nextScaledHeight(height) >= GUIJiggler.MIN_SCALED_HEIGHT)
-            incrementScaleFactor();
+    private void initScaleFactorFloat(int width, int height) {
+        scaleFactorFloat = maxScaleFactor(width, height);
     }
 
-    private int nextScaledWidth(int width) {
-        return MathHelper.ceiling_double_int(width / (scaleFactorFloat + GUIJiggler.GUI_SCALE_STEP));
+    private float maxScaleFactor(int width, int height) {
+        return Math.min(guiScaleAsFloat(), maxScaleFactorFromResolution(width, height));
     }
 
-    private int nextScaledHeight(int height) {
-        return MathHelper.ceiling_double_int(height / (scaleFactorFloat + GUIJiggler.GUI_SCALE_STEP));
+    private float maxScaleFactorFromResolution(int width, int height) {
+        return Math.min(maxScaleFactorFromWidth(width), maxScaleFactorFromHeight(height));
     }
 
-    private void incrementScaleFactor() {
-        scaleFactorFloat += GUIJiggler.GUI_SCALE_STEP;
+    private float maxScaleFactorFromWidth(int width) {
+        return Math.max((float) width / MIN_SCALED_WIDTH, 1F);
+    }
+
+    private float maxScaleFactorFromHeight(int height) {
+        return Math.max((float) height / MIN_SCALED_HEIGHT, 1F);
     }
 
     private void initScaledWidth(int width) {
@@ -64,6 +64,6 @@ public abstract class ScaledResolutionMixin {
     }
 
     private void initScaleFactor() {
-        scaleFactor = MathHelper.ceiling_double_int(scaleFactorFloat);
+        scaleFactor = Math.round(scaleFactorFloat);
     }
 }
