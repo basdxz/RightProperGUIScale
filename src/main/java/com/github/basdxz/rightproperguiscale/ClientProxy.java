@@ -4,6 +4,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
-        GameSettingReflections.apply();
+        if (RightProperGUIScale.isEnabled())
+            GameSettingReflections.apply();
     }
 }

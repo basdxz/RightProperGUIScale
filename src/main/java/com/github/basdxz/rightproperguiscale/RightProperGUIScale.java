@@ -9,6 +9,12 @@ public class RightProperGUIScale {
     @SidedProxy(clientSide = Tags.GROUPNAME + ".ClientProxy", serverSide = Tags.GROUPNAME + ".CommonProxy")
     public static CommonProxy proxy;
 
+    public static final boolean IS_ENABLED = true;
+
+    public static Boolean isEnabled() {
+        return IS_ENABLED;
+    }
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
