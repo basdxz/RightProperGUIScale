@@ -32,20 +32,27 @@ public final class GUIJiggler {
 
     public static void updateGuiScale() {
         pushTempGuiScale();
-        updateMinecraftResolutionScale();
+        val minecraft = Minecraft.getMinecraft();
+        updateMinecraftResolutionScale(minecraft);
+        updateCurrentGUI(minecraft);
     }
 
     private static void pushTempGuiScale() {
         GUI_SCALE = TEMP_GUI_SCALE;
     }
 
-    private static void updateMinecraftResolutionScale() {
-        val minecraft = Minecraft.getMinecraft();
+    private static void updateMinecraftResolutionScale(@NonNull Minecraft minecraft) {
         minecraft.gameSettings.guiScale = guiScaleAsInt();
+    }
+
+    private static void updateCurrentGUI(@NonNull Minecraft minecraft) {
+        val currentGUI = minecraft.currentScreen;
+        if (currentGUI == null)
+            return;
         val scaledResolution = newScaledResolution(minecraft);
-        minecraft.currentScreen.setWorldAndResolution(minecraft,
-                                                      scaledResolution.getScaledWidth(),
-                                                      scaledResolution.getScaledHeight());
+        currentGUI.setWorldAndResolution(minecraft,
+                                         scaledResolution.getScaledWidth(),
+                                         scaledResolution.getScaledHeight());
     }
 
     public static int guiScaleAsInt() {

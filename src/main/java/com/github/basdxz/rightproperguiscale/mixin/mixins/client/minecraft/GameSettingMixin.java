@@ -2,11 +2,13 @@ package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
 
 import com.github.basdxz.rightproperguiscale.GUIJiggler;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.util.MathHelper;
 import org.spongepowered.asm.lib.Opcodes;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
+
+import static com.github.basdxz.rightproperguiscale.GUIJiggler.guiScaleAsInt;
+import static com.github.basdxz.rightproperguiscale.GUIJiggler.updateGuiScale;
 
 @Mixin(GameSettings.class)
 public abstract class GameSettingMixin {
@@ -18,7 +20,7 @@ public abstract class GameSettingMixin {
             at = @At(value = "RETURN"),
             require = 1)
     private void guiScaleLabel(CallbackInfo ci) {
-        guiScale = GUIJiggler.guiScaleAsInt();
+        guiScale = guiScaleAsInt();
     }
 
     @Inject(method = "getKeyBinding(Lnet/minecraft/client/settings/GameSettings$Options;)Ljava/lang/String;",
@@ -71,7 +73,8 @@ public abstract class GameSettingMixin {
     private int loadGuiScale(String guiScaleString) {
         float guiScale = Float.parseFloat(guiScaleString);
         GUIJiggler.setTempGuiScale(guiScale);
-        return MathHelper.ceiling_float_int(guiScale);
+        updateGuiScale();
+        return guiScaleAsInt();
     }
 
     @Redirect(method = "saveOptions()V",
