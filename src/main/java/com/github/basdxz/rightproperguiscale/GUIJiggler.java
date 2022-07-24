@@ -18,6 +18,9 @@ public final class GUIJiggler {
     public static final float GUI_SCALE_STEP = 0.1F;
     public static final float GUI_SCALE_DEFAULT = 4.0F;
 
+    private static final int VANILLA_MAX_GUI_SCALE = 3;
+    private static final int VANILLA_AUTO_GUI_SCALE = 0;
+
     private static float GUI_SCALE = GUI_SCALE_DEFAULT;
     private static float TEMP_GUI_SCALE = GUI_SCALE;
 
@@ -56,7 +59,8 @@ public final class GUIJiggler {
     }
 
     public static int guiScaleAsInt() {
-        return MathHelper.ceiling_float_int(GUI_SCALE);
+        val intGuiScale = MathHelper.ceiling_float_int(GUI_SCALE);
+        return intGuiScale > VANILLA_MAX_GUI_SCALE ? VANILLA_AUTO_GUI_SCALE : intGuiScale;
     }
 
     private static ScaledResolution newScaledResolution(@NonNull Minecraft minecraft) {
