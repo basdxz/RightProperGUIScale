@@ -21,6 +21,8 @@ public final class GUIJiggler {
     private static final int VANILLA_MAX_GUI_SCALE = 3;
     private static final int VANILLA_AUTO_GUI_SCALE = 0;
 
+    private static final int MOUSE_BUTTON_MOVED = -1;
+
     private static float GUI_SCALE = GUI_SCALE_DEFAULT;
     private static float TEMP_GUI_SCALE = GUI_SCALE;
 
@@ -69,5 +71,9 @@ public final class GUIJiggler {
 
     public static float guiScaleAsFloat() {
         return GUI_SCALE;
+    }
+
+    public static boolean mouseReleased(int mouseButton) {
+        return MOUSE_BUTTON_MOVED != mouseButton;
     }
 }

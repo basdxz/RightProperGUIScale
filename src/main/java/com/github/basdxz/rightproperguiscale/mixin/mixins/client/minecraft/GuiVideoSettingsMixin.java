@@ -7,10 +7,10 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
+import static com.github.basdxz.rightproperguiscale.GUIJiggler.mouseReleased;
+
 @Mixin(GuiVideoSettings.class)
 public abstract class GuiVideoSettingsMixin {
-    private static final int MOUSE_BUTTON_MOVED = -1;
-
     @Inject(method = "mouseClicked(III)V",
             at = @At(value = "FIELD",
                      target = "net/minecraft/client/gui/GuiVideoSettings.guiGameSettings:" +
@@ -37,9 +37,5 @@ public abstract class GuiVideoSettingsMixin {
         if (mouseReleased(mouseButton))
             GUIJiggler.updateGuiScale();
         ci.cancel();
-    }
-
-    private static boolean mouseReleased(int mouseButton) {
-        return MOUSE_BUTTON_MOVED != mouseButton;
     }
 }

@@ -10,7 +10,7 @@ import static com.falsepattern.lib.mixin.ITargetedMod.PredicateHelpers.startsWit
 @Getter
 @RequiredArgsConstructor
 public enum TargetedMod implements ITargetedMod {
-    OPTIFINE("OptiFine", false, startsWith("optifine").or(startsWith("gt5u")));
+    OPTIFINE("OptiFine", false, startsWith("optifine"));
 
     private final String modName;
     private final boolean loadInDevelopment;
