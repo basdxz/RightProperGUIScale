@@ -31,7 +31,12 @@ public final class GUIJiggler {
                String.format("%.1f", TEMP_GUI_SCALE);
     }
 
-    public static void setTempGuiScale(float guiScale) {
+    public static void setGUIScale(float guiScale) {
+        setTempGUIScale(guiScale);
+        updateGuiScale();
+    }
+
+    public static void setTempGUIScale(float guiScale) {
         TEMP_GUI_SCALE = guiScale;
     }
 

@@ -8,16 +8,15 @@ import lombok.*;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static com.falsepattern.lib.mixin.IMixin.PredicateHelpers.condition;
-import static com.falsepattern.lib.mixin.IMixin.PredicateHelpers.require;
+import static com.falsepattern.lib.mixin.IMixin.PredicateHelpers.*;
 import static com.github.basdxz.rightproperguiscale.mixin.plugin.TargetedMod.OPTIFINE;
 
 @Getter
 @RequiredArgsConstructor
 public enum Mixin implements IMixin {
-    //    GameSettingMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.GameSettingMixin"),
-//    ScaledResolutionMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.ScaledResolutionMixin"),
-//    GuiVideoSettingsMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(avoid(OPTIFINE)), "minecraft.GuiVideoSettingsMixin"),
+    GameSettingMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.GameSettingMixin"),
+    ScaledResolutionMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.ScaledResolutionMixin"),
+    GuiVideoSettingsMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(avoid(OPTIFINE)), "minecraft.GuiVideoSettingsMixin"),
     OptifineGuiVideoSettingsMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(require(OPTIFINE)), "optifine.GuiVideoSettingsMixin"),
 
 

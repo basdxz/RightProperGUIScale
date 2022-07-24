@@ -1,5 +1,6 @@
 package com.github.basdxz.rightproperguiscale.mixin.mixins.client.optifine;
 
+import com.github.basdxz.rightproperguiscale.GUIJiggler;
 import com.github.basdxz.rightproperguiscale.stubpackage.net.minecraft.client.gui.GuiVideoSettings;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.*;
@@ -15,7 +16,7 @@ public abstract class GuiVideoSettingsMixin {
             require = 1)
     private void updateResolutionScale(int mousePosX, int mousePosY, int mouseButton, CallbackInfo ci) {
         if (isGuiVideoSettings() && mouseReleased(mouseButton))
-            System.out.println("Ballin??");
+            GUIJiggler.updateGuiScale();
     }
 
     @SuppressWarnings("ConstantConditions")

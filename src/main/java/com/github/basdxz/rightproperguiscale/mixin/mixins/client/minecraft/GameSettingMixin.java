@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 import static com.github.basdxz.rightproperguiscale.GUIJiggler.guiScaleAsInt;
-import static com.github.basdxz.rightproperguiscale.GUIJiggler.updateGuiScale;
 
 @Mixin(GameSettings.class)
 public abstract class GameSettingMixin {
@@ -40,7 +39,7 @@ public abstract class GameSettingMixin {
             require = 1)
     private void setGuiScaleValue(GameSettings.Options option, float value, CallbackInfo ci) {
         if (isScaleOption(option)) {
-            GUIJiggler.setTempGuiScale(value);
+            GUIJiggler.setTempGUIScale(value);
             ci.cancel();
         }
     }
@@ -72,9 +71,8 @@ public abstract class GameSettingMixin {
               require = 1)
     private int loadGuiScale(String guiScaleString) {
         float guiScale = Float.parseFloat(guiScaleString);
-        GUIJiggler.setTempGuiScale(guiScale);
-        updateGuiScale();
-        return 0;
+        GUIJiggler.setGUIScale(guiScale);
+        return guiScaleAsInt();
     }
 
     @Redirect(method = "saveOptions()V",
