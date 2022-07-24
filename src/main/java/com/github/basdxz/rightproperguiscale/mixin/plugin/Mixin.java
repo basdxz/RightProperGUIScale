@@ -17,8 +17,9 @@ public enum Mixin implements IMixin {
     GameSettingMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.GameSettingMixin"),
     ScaledResolutionMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.ScaledResolutionMixin"),
     GuiVideoSettingsMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(avoid(OPTIFINE)), "minecraft.GuiVideoSettingsMixin"),
-    OptifineGuiVideoSettingsMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(require(OPTIFINE)), "optifine.GuiVideoSettingsMixin"),
 
+    GuiScreenMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(require(OPTIFINE)), "optifine.GuiScreenMixin"),
+    TooltipProviderOptionsMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(require(OPTIFINE)), "optifine.TooltipProviderOptionsMixin"),
 
     ;
     private final Side side;

@@ -81,4 +81,8 @@ public final class GUIJiggler {
     public static boolean mouseReleased(int mouseButton) {
         return MOUSE_BUTTON_MOVED != mouseButton;
     }
+
+    public static boolean isScaleOption(GameSettings.Options option) {
+        return GameSettings.Options.GUI_SCALE == option;
+    }
 }
