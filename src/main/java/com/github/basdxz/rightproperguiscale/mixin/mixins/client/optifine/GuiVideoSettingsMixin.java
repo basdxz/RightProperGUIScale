@@ -1,8 +1,8 @@
 package com.github.basdxz.rightproperguiscale.mixin.mixins.client.optifine;
 
 import com.github.basdxz.rightproperguiscale.GUIJiggler;
-import com.github.basdxz.rightproperguiscale.stubpackage.net.minecraft.client.gui.GuiVideoSettings;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiVideoSettings;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
