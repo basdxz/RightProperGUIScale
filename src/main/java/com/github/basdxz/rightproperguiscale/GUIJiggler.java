@@ -3,6 +3,7 @@ package com.github.basdxz.rightproperguiscale;
 import com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft.IScaledResolutionMixin;
 import lombok.*;
 import lombok.experimental.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
@@ -39,7 +40,11 @@ public final class GUIJiggler {
     }
 
     public static void setTempGUIScale(float guiScale) {
-        TEMP_GUI_SCALE = guiScale;
+        TEMP_GUI_SCALE = clampGUIScale(guiScale);
+    }
+
+    private static float clampGUIScale(float guiScale) {
+        return Math.max(Math.min(guiScale, GUI_SCALE_MAX), GUI_SCALE_MIN);
     }
 
     public static void updateGuiScale() {
@@ -63,6 +68,10 @@ public final class GUIJiggler {
         getMinecraft().currentScreen.setWorldAndResolution(getMinecraft(),
                                                            scaledResolution.getScaledWidth(),
                                                            scaledResolution.getScaledHeight());
+    }
+
+    public static void saveGUIScale() {
+        Minecraft.getMinecraft().gameSettings.saveOptions();
     }
 
     public static int guiScaleAsInt() {
