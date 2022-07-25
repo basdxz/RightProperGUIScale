@@ -1,15 +1,15 @@
 package com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft;
 
 public interface IScaledResolutionMixin {
-    int getScaledWidth();
+    int scaledWidth();
 
-    int getScaledHeight();
+    int scaledHeight();
 
-    double getScaledWidth_double();
+    double scaledWidthDouble();
 
-    double getScaledHeight_double();
+    double getScaledHeightDouble();
 
-    int getScaleFactor();
+    int scaleFactor();
 
-    float getScaleFactorFloat();
+    float scaleFactorFloat();
 }

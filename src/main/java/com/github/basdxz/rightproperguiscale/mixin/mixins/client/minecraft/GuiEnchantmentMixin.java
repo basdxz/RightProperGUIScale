@@ -33,18 +33,18 @@ public abstract class GuiEnchantmentMixin {
     }
 
     private int bookViewportXPos(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_double_int((scaledResolution.getScaledWidth_double() - BOOK_RENDER_WIDTH) / 2F * scaledResolution.getScaleFactorFloat());
+        return MathHelper.ceiling_double_int((scaledResolution.scaledWidthDouble() - BOOK_RENDER_WIDTH) / 2F * scaledResolution.scaleFactorFloat());
     }
 
     private int bookViewportYPos(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_double_int((scaledResolution.getScaledHeight_double() - BOOK_RENDER_HEIGHT) / 2F * scaledResolution.getScaleFactorFloat());
+        return MathHelper.ceiling_double_int((scaledResolution.getScaledHeightDouble() - BOOK_RENDER_HEIGHT) / 2F * scaledResolution.scaleFactorFloat());
     }
 
     private int bookViewportWidth(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_float_int(BOOK_RENDER_WIDTH * scaledResolution.getScaleFactorFloat());
+        return MathHelper.ceiling_float_int(BOOK_RENDER_WIDTH * scaledResolution.scaleFactorFloat());
     }
 
     private int bookViewportHeight(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_float_int(BOOK_RENDER_HEIGHT * scaledResolution.getScaleFactorFloat());
+        return MathHelper.ceiling_float_int(BOOK_RENDER_HEIGHT * scaledResolution.scaleFactorFloat());
     }
 }

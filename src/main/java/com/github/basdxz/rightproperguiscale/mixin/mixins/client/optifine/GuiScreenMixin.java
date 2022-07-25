@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 import static com.github.basdxz.rightproperguiscale.GUIJiggler.mouseReleased;
 
+@Unique
 @Mixin(GuiScreen.class)
 public abstract class GuiScreenMixin {
     @Inject(method = "mouseMovedOrUp(III)V",

@@ -11,6 +11,7 @@ import org.lwjgl.opengl.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
+@Unique
 @Mixin(LoadingScreenRenderer.class)
 public abstract class LoadingScreenRendererMixin {
     @Shadow
@@ -41,11 +42,11 @@ public abstract class LoadingScreenRendererMixin {
     }
 
     private float rightOrtho(@NonNull IScaledResolutionMixin scaledResolution) {
-        return scaledResolution.getScaledWidth() * scaledResolution.getScaleFactorFloat();
+        return scaledResolution.scaledWidth() * scaledResolution.scaleFactorFloat();
     }
 
     private float bottomOrtho(@NonNull IScaledResolutionMixin scaledResolution) {
-        return scaledResolution.getScaledHeight() * scaledResolution.getScaleFactorFloat();
+        return scaledResolution.scaledHeight() * scaledResolution.scaleFactorFloat();
     }
 
     @Redirect(method = "setLoadingProgress(I)V",

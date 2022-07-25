@@ -29,7 +29,7 @@ public abstract class GuiNewChatMixin {
                                            ScaledResolution scaledResolution) {
         lastMousePosX = mousePosX;
         lastMousePosY = mousePosY;
-        lastScaleFactorFloat = GUIJiggler.toIScaledResolutionMixin(scaledResolution).getScaleFactorFloat();
+        lastScaleFactorFloat = GUIJiggler.toIScaledResolutionMixin(scaledResolution).scaleFactorFloat();
     }
 
     // Minecraft chat scale
