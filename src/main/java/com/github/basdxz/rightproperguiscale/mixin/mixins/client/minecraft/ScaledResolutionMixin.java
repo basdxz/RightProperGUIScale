@@ -1,5 +1,7 @@
 package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
 
+import com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft.IScaledResolutionMixin;
+import lombok.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.MathHelper;
@@ -10,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import static com.github.basdxz.rightproperguiscale.GUIJiggler.*;
 
 @Mixin(ScaledResolution.class)
-public abstract class ScaledResolutionMixin {
+public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
     @Shadow
     private int scaledWidth;
     @Shadow
@@ -21,6 +23,7 @@ public abstract class ScaledResolutionMixin {
     private double scaledHeightD;
     @Shadow
     private int scaleFactor;
+    @Getter
     private float scaleFactorFloat;
 
     @Inject(method = "<init>(Lnet/minecraft/client/Minecraft;II)V",
@@ -66,4 +69,19 @@ public abstract class ScaledResolutionMixin {
     private void initScaleFactor() {
         scaleFactor = Math.round(scaleFactorFloat);
     }
+
+    @Shadow
+    public abstract int getScaledWidth();
+
+    @Shadow
+    public abstract int getScaledHeight();
+
+    @Shadow
+    public abstract double getScaledWidth_double();
+
+    @Shadow
+    public abstract double getScaledHeight_double();
+
+    @Shadow
+    public abstract int getScaleFactor();
 }

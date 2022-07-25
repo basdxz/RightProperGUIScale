@@ -1,5 +1,6 @@
 package com.github.basdxz.rightproperguiscale;
 
+import com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft.IScaledResolutionMixin;
 import lombok.*;
 import lombok.experimental.*;
 import net.minecraft.client.Minecraft;
@@ -70,7 +71,13 @@ public final class GUIJiggler {
         return intGuiScale > VANILLA_MAX_GUI_SCALE ? VANILLA_AUTO_GUI_SCALE : intGuiScale;
     }
 
-    private static ScaledResolution newScaledResolution(@NonNull Minecraft minecraft) {
+    public static IScaledResolutionMixin newIScaledResolutionMixin(@NonNull Minecraft minecraft) {
+        if (!RightProperGUIScale.isEnabled())
+            throw new IllegalStateException("Mod is disabled!");
+        return (IScaledResolutionMixin) newScaledResolution(minecraft);
+    }
+
+    public static ScaledResolution newScaledResolution(@NonNull Minecraft minecraft) {
         return new ScaledResolution(minecraft, minecraft.displayWidth, minecraft.displayHeight);
     }
 
