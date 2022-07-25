@@ -3,11 +3,12 @@ package com.github.basdxz.rightproperguiscale;
 import com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft.IScaledResolutionMixin;
 import lombok.*;
 import lombok.experimental.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.MathHelper;
+
+import static net.minecraft.client.Minecraft.getMinecraft;
 
 @UtilityClass
 public final class GUIJiggler {
@@ -43,27 +44,25 @@ public final class GUIJiggler {
 
     public static void updateGuiScale() {
         pushTempGuiScale();
-        val minecraft = Minecraft.getMinecraft();
-        updateMinecraftResolutionScale(minecraft);
-        updateCurrentGUI(minecraft);
+        updateMinecraftGUIScale();
+        updateCurrentScreen();
     }
 
     private static void pushTempGuiScale() {
         GUI_SCALE = TEMP_GUI_SCALE;
     }
 
-    private static void updateMinecraftResolutionScale(@NonNull Minecraft minecraft) {
-        minecraft.gameSettings.guiScale = guiScaleAsInt();
+    private static void updateMinecraftGUIScale() {
+        getMinecraft().gameSettings.guiScale = guiScaleAsInt();
     }
 
-    private static void updateCurrentGUI(@NonNull Minecraft minecraft) {
-        val currentGUI = minecraft.currentScreen;
-        if (currentGUI == null)
+    private static void updateCurrentScreen() {
+        if (getMinecraft().currentScreen == null)
             return;
-        val scaledResolution = newScaledResolution(minecraft);
-        currentGUI.setWorldAndResolution(minecraft,
-                                         scaledResolution.getScaledWidth(),
-                                         scaledResolution.getScaledHeight());
+        val scaledResolution = newScaledResolution();
+        getMinecraft().currentScreen.setWorldAndResolution(getMinecraft(),
+                                                           scaledResolution.getScaledWidth(),
+                                                           scaledResolution.getScaledHeight());
     }
 
     public static int guiScaleAsInt() {
@@ -71,14 +70,18 @@ public final class GUIJiggler {
         return intGuiScale > VANILLA_MAX_GUI_SCALE ? VANILLA_AUTO_GUI_SCALE : intGuiScale;
     }
 
-    public static IScaledResolutionMixin newIScaledResolutionMixin(@NonNull Minecraft minecraft) {
-        if (!RightProperGUIScale.isEnabled())
-            throw new IllegalStateException("Mod is disabled!");
-        return (IScaledResolutionMixin) newScaledResolution(minecraft);
+    public static IScaledResolutionMixin newIScaledResolutionMixin() {
+        return toIScaledResolutionMixin(newScaledResolution());
     }
 
-    public static ScaledResolution newScaledResolution(@NonNull Minecraft minecraft) {
-        return new ScaledResolution(minecraft, minecraft.displayWidth, minecraft.displayHeight);
+    public static ScaledResolution newScaledResolution() {
+        return new ScaledResolution(getMinecraft(), getMinecraft().displayWidth, getMinecraft().displayHeight);
+    }
+
+    public static IScaledResolutionMixin toIScaledResolutionMixin(@NonNull ScaledResolution scaledResolution) {
+        if (!RightProperGUIScale.isEnabled())
+            throw new IllegalStateException("Mod is disabled!");
+        return (IScaledResolutionMixin) scaledResolution;
     }
 
     public static float guiScaleAsFloat() {

@@ -2,7 +2,6 @@ package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
 
 import com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft.IScaledResolutionMixin;
 import lombok.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiEnchantment;
 import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.*;
@@ -26,7 +25,7 @@ public abstract class GuiEnchantmentMixin {
     }
 
     private void setBookViewport() {
-        val scaledResolution = newIScaledResolutionMixin(Minecraft.getMinecraft());
+        val scaledResolution = newIScaledResolutionMixin();
         GL11.glViewport(bookViewportXPos(scaledResolution),
                         bookViewportYPos(scaledResolution),
                         bookViewportWidth(scaledResolution),
