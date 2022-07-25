@@ -4,7 +4,9 @@ import com.github.basdxz.rightproperguiscale.GUIJiggler;
 import com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft.IScaledResolutionMixin;
 import lombok.*;
 import net.minecraft.client.LoadingScreenRenderer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.shader.Framebuffer;
 import org.lwjgl.opengl.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -13,6 +15,8 @@ import org.spongepowered.asm.mixin.injection.*;
 public abstract class LoadingScreenRendererMixin {
     @Shadow
     private ScaledResolution field_146587_f;
+    @Shadow
+    private Minecraft mc;
 
     @Redirect(method = "func_73722_d(Ljava/lang/String;)V",
               at = @At(value = "INVOKE",
@@ -42,5 +46,14 @@ public abstract class LoadingScreenRendererMixin {
 
     private float bottomOrtho(@NonNull IScaledResolutionMixin scaledResolution) {
         return scaledResolution.getScaledHeight() * scaledResolution.getScaleFactorFloat();
+    }
+
+    @Redirect(method = "setLoadingProgress(I)V",
+              at = @At(value = "INVOKE",
+                       target = "Lnet/minecraft/client/shader/Framebuffer;framebufferRender(II)V",
+                       ordinal = 0),
+              require = 1)
+    private void fixFrameBufferRender(Framebuffer instance, int f1, int f2) {
+        instance.framebufferRender(this.mc.displayWidth, this.mc.displayHeight);
     }
 }
