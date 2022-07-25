@@ -1,0 +1,46 @@
+package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
+
+import com.github.basdxz.rightproperguiscale.GUIJiggler;
+import com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft.IScaledResolutionMixin;
+import lombok.*;
+import net.minecraft.client.LoadingScreenRenderer;
+import net.minecraft.client.gui.ScaledResolution;
+import org.lwjgl.opengl.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+
+@Mixin(LoadingScreenRenderer.class)
+public abstract class LoadingScreenRendererMixin {
+    @Shadow
+    private ScaledResolution field_146587_f;
+
+    @Redirect(method = "func_73722_d(Ljava/lang/String;)V",
+              at = @At(value = "INVOKE",
+                       target = "Lorg/lwjgl/opengl/GL11;glOrtho(DDDDDD)V",
+                       ordinal = 0),
+              require = 1)
+    private void fixCenteredText(double left, double right, double bottom, double top, double zNear, double zFar) {
+        setOrtho(GUIJiggler.toIScaledResolutionMixin(field_146587_f), left, top, zNear, zFar);
+    }
+
+    private void setOrtho(@NonNull IScaledResolutionMixin scaledResolution,
+                          double left,
+                          double top,
+                          double zNear,
+                          double zFar) {
+        GL11.glOrtho(left,
+                     rightOrtho(scaledResolution),
+                     bottomOrtho(scaledResolution),
+                     top,
+                     zNear,
+                     zFar);
+    }
+
+    private float rightOrtho(@NonNull IScaledResolutionMixin scaledResolution) {
+        return scaledResolution.getScaledWidth() * scaledResolution.getScaleFactorFloat();
+    }
+
+    private float bottomOrtho(@NonNull IScaledResolutionMixin scaledResolution) {
+        return scaledResolution.getScaledHeight() * scaledResolution.getScaleFactorFloat();
+    }
+}
