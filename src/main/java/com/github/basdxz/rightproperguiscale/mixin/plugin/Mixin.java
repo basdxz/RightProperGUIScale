@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static com.falsepattern.lib.mixin.IMixin.PredicateHelpers.*;
+import static com.github.basdxz.rightproperguiscale.mixin.plugin.TargetedMod.BETTER_LOADING_SCREEN;
 import static com.github.basdxz.rightproperguiscale.mixin.plugin.TargetedMod.OPTIFINE;
 
 @Getter
@@ -19,7 +20,7 @@ public enum Mixin implements IMixin {
     GuiEnchantmentMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.GuiEnchantmentMixin"),
     LoadingScreenRendererMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.LoadingScreenRendererMixin"),
     GuiNewChatMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.GuiNewChatMixin"),
-    MinecraftMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.MinecraftMixin"),
+    MinecraftMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(avoid(BETTER_LOADING_SCREEN)), "minecraft.MinecraftMixin"),
 
     GuiVideoSettingsMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(avoid(OPTIFINE)), "minecraft.GuiVideoSettingsMixin"),
 

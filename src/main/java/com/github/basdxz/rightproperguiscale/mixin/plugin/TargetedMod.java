@@ -10,7 +10,8 @@ import static com.falsepattern.lib.mixin.ITargetedMod.PredicateHelpers.startsWit
 @Getter
 @RequiredArgsConstructor
 public enum TargetedMod implements ITargetedMod {
-    OPTIFINE("OptiFine", false, startsWith("optifine"));
+    OPTIFINE("OptiFine", false, startsWith("optifine")),
+    BETTER_LOADING_SCREEN("BetterLoadingScreen", false, startsWith("betterloadingscreen"));
 
     private final String modName;
     private final boolean loadInDevelopment;
