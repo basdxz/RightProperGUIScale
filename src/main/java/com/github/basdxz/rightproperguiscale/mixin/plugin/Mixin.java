@@ -16,6 +16,7 @@ import static com.github.basdxz.rightproperguiscale.mixin.plugin.TargetedMod.OPT
 public enum Mixin implements IMixin {
     GameSettingMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.GameSettingMixin"),
     ScaledResolutionMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.ScaledResolutionMixin"),
+    GuiEnchantmentMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.GuiEnchantmentMixin"),
     GuiVideoSettingsMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(avoid(OPTIFINE)), "minecraft.GuiVideoSettingsMixin"),
 
     GuiScreenMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(require(OPTIFINE)), "optifine.GuiScreenMixin"),
