@@ -18,6 +18,7 @@ public enum Mixin implements IMixin {
     ScaledResolutionMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.ScaledResolutionMixin"),
     GuiEnchantmentMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.GuiEnchantmentMixin"),
     LoadingScreenRendererMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.LoadingScreenRendererMixin"),
+    GuiNewChatMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled), "minecraft.GuiNewChatMixin"),
 
     GuiVideoSettingsMixin(Side.CLIENT, condition(RightProperGUIScale::isEnabled).and(avoid(OPTIFINE)), "minecraft.GuiVideoSettingsMixin"),
 
