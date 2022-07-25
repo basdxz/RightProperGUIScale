@@ -78,6 +78,6 @@ public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
 
     @Unique
     private void initScaleFactor() {
-        scaleFactor = Math.round(scaleFactorFloat);
+        scaleFactor = Math.max(Math.round(scaleFactorFloat), 1);
     }
 }
