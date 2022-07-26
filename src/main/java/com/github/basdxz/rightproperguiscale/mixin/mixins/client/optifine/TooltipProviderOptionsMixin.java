@@ -1,7 +1,7 @@
 package com.github.basdxz.rightproperguiscale.mixin.mixins.client.optifine;
 
 
-import com.github.basdxz.rightproperguiscale.GUIJiggler;
+import com.github.basdxz.rightproperguiscale.util.Util;
 import net.minecraft.client.settings.GameSettings;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -18,7 +18,7 @@ public abstract class TooltipProviderOptionsMixin {
                                 "Ljava/lang/String;"),
               require = 1)
     private String injected(GameSettings.Options option) {
-        if (GUIJiggler.isScaleOption(option))
+        if (Util.isScaleOption(option))
             return GUI_SCALE_UNLOCALIZED_TAG;
         return option.getEnumString();
     }

@@ -8,7 +8,7 @@ import org.lwjgl.opengl.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
-import static com.github.basdxz.rightproperguiscale.GUIJiggler.newIScaledResolutionMixin;
+import static com.github.basdxz.rightproperguiscale.util.Util.newIScaledResolutionMixin;
 
 @Mixin(GuiEnchantment.class)
 public abstract class GuiEnchantmentMixin {

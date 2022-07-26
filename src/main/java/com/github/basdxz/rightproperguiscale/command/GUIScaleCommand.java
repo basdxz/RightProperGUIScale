@@ -1,6 +1,6 @@
 package com.github.basdxz.rightproperguiscale.command;
 
-import com.github.basdxz.rightproperguiscale.GUIJiggler;
+import com.github.basdxz.rightproperguiscale.GUIScale;
 import lombok.*;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -74,8 +74,8 @@ public class GUIScaleCommand extends CommandBase {
     }
 
     protected void updateGUIScale(float guiScale) {
-        GUIJiggler.setGUIScale(guiScale);
-        GUIJiggler.saveGUIScale();
+        GUIScale.set(guiScale);
+        GUIScale.save();
     }
 
     protected void sendSuccessMessage(@NonNull ICommandSender sender) {
@@ -83,6 +83,6 @@ public class GUIScaleCommand extends CommandBase {
     }
 
     protected ChatComponentTranslation newSuccessMessage() {
-        return new ChatComponentTranslation(GUI_SCALE_COMMAND_SUCCESS_UNLOCALIZED, GUIJiggler.guiScaleAsFloat());
+        return new ChatComponentTranslation(GUI_SCALE_COMMAND_SUCCESS_UNLOCALIZED, GUIScale.asFloat());
     }
 }

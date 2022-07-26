@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.github.basdxz.rightproperguiscale.GUIJiggler.guiScaleAsFloat;
+import static com.github.basdxz.rightproperguiscale.GUIScale.asFloat;
 import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig.MIN_SCALED_HEIGHT;
 import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig.MIN_SCALED_WIDTH;
 
@@ -48,7 +48,7 @@ public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
 
     @Unique
     private float maxScaleFactor(int width, int height) {
-        return Math.min(guiScaleAsFloat(), maxScaleFactorFromResolution(width, height));
+        return Math.min(asFloat(), maxScaleFactorFromResolution(width, height));
     }
 
     @Unique

@@ -1,6 +1,6 @@
 package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
 
-import com.github.basdxz.rightproperguiscale.GUIJiggler;
+import com.github.basdxz.rightproperguiscale.util.Util;
 import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.IChatComponent;
@@ -29,7 +29,7 @@ public abstract class GuiNewChatMixin {
                                            ScaledResolution scaledResolution) {
         lastMousePosX = mousePosX;
         lastMousePosY = mousePosY;
-        lastScaleFactorFloat = GUIJiggler.toIScaledResolutionMixin(scaledResolution).scaleFactorFloat();
+        lastScaleFactorFloat = Util.toIScaledResolutionMixin(scaledResolution).scaleFactorFloat();
     }
 
     // Minecraft chat scale

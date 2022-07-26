@@ -1,13 +1,13 @@
 package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
 
-import com.github.basdxz.rightproperguiscale.GUIJiggler;
+import com.github.basdxz.rightproperguiscale.GUIScale;
 import net.minecraft.client.gui.GuiVideoSettings;
 import org.spongepowered.asm.lib.Opcodes;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.github.basdxz.rightproperguiscale.GUIJiggler.mouseReleased;
+import static com.github.basdxz.rightproperguiscale.util.Util.mouseReleased;
 
 @Mixin(GuiVideoSettings.class)
 public abstract class GuiVideoSettingsMixin {
@@ -35,7 +35,7 @@ public abstract class GuiVideoSettingsMixin {
             require = 1)
     private void redirectScaledResolutionUpdate(int mousePosX, int mousePosY, int mouseButton, CallbackInfo ci) {
         if (mouseReleased(mouseButton))
-            GUIJiggler.updateGuiScale();
+            GUIScale.update();
         ci.cancel();
     }
 }
