@@ -16,7 +16,8 @@ import static com.github.basdxz.rightproperguiscale.util.Util.mouseReleased;
 @Mixin(GuiScreen.class)
 public abstract class GuiScreenMixin {
     /**
-     * Blindly //TODO finish
+     * Injects into the return of {@link GuiScreen#mouseMovedOrUp(int, int, int)} and updates {@link GUIScale}
+     * if the current screen is {@link GuiVideoSettings} and the mouse has just been released.
      *
      * @param mousePosX   mouse X position
      * @param mousePosY   mouse Y position
