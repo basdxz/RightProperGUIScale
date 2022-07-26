@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.*;
  * This patch is incompatible with {@link TargetedMod#BETTER_LOADING_SCREEN} since this mod removes the targeted
  * code. However, this mod also doesn't experience the bug this patch intended to fix.
  */
+@Unique
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin {
     @Shadow
