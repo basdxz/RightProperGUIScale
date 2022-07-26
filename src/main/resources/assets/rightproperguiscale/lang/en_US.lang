@@ -7,3 +7,8 @@ options.rightProperGuiScale.tooltip.5=  3.0+ - Adjustable Auto
 options.rightProperGuiScale.tooltip.6=Actual scale is limited by display size.
 options.rightProperGuiScale.tooltip.7=Certain values will make unicode fonts hard to read.
 options.rightProperGuiScale.tooltip.8=SmoothFont mod highly recommended!
+
+# Commands
+commands.guiscale.usage=/guiscale <guiScale>
+commands.guiscale.success=§6Gui Scale: §f%s
+commands.guiscale.number_invalid='%s' is not a valid float.
