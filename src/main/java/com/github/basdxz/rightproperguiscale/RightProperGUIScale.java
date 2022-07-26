@@ -12,6 +12,7 @@ import static com.github.basdxz.rightproperguiscale.Tags.*;
      version = VERSION,
      name = MODNAME,
      acceptedMinecraftVersions = "[1.7.10]",
+     guiFactory = GROUPNAME + ".config.RightProperGUIScaleGuiFactory",
      dependencies = "required-after:spongemixins@[1.1.0,);" + "required-after:falsepatternlib@[0.9.0,);")
 public class RightProperGUIScale {
     @SidedProxy(clientSide = GROUPNAME + ".ClientProxy", serverSide = GROUPNAME + ".CommonProxy")

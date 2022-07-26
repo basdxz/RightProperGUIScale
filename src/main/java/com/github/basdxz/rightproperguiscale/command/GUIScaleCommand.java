@@ -1,5 +1,6 @@
-package com.github.basdxz.rightproperguiscale;
+package com.github.basdxz.rightproperguiscale.command;
 
+import com.github.basdxz.rightproperguiscale.GUIJiggler;
 import lombok.*;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;

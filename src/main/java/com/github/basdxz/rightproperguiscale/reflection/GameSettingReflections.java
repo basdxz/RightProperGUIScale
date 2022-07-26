@@ -1,5 +1,7 @@
-package com.github.basdxz.rightproperguiscale;
+package com.github.basdxz.rightproperguiscale.reflection;
 
+import com.github.basdxz.rightproperguiscale.GUIJiggler;
+import com.github.basdxz.rightproperguiscale.RightProperGUIScale;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import lombok.*;
 import lombok.experimental.*;
