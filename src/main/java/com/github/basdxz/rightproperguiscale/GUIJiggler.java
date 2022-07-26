@@ -81,8 +81,6 @@ public final class GUIJiggler {
     }
 
     public static IScaledResolutionMixin toIScaledResolutionMixin(@NonNull ScaledResolution scaledResolution) {
-        if (!RightProperGUIScale.isEnabled())
-            throw new IllegalStateException("Mod is disabled!");
         return (IScaledResolutionMixin) scaledResolution;
     }
 
