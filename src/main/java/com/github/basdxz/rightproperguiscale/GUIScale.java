@@ -2,14 +2,17 @@ package com.github.basdxz.rightproperguiscale;
 
 import com.github.basdxz.rightproperguiscale.command.GUIScaleCommand;
 import com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig;
+import com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft.IScaledResolutionMixin;
 import com.github.basdxz.rightproperguiscale.reflection.GameSettingReflections;
 import com.github.basdxz.rightproperguiscale.util.Util;
-import lombok.experimental.*;
 import lombok.*;
+import lombok.experimental.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.MathHelper;
+
+import java.text.DecimalFormat;
 
 import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig.*;
 import static net.minecraft.client.Minecraft.getMinecraft;
@@ -18,10 +21,12 @@ import static net.minecraft.client.Minecraft.getMinecraft;
 public final class GUIScale {
     private static final int VANILLA_MAX_GUI_SCALE = 3;
     private static final int VANILLA_AUTO_GUI_SCALE = 0;
+    private static final DecimalFormat FLOAT_FORMAT = new DecimalFormat();
 
     private static boolean INITIALIZED = false;
     private static float VALUE = GUI_SCALE_DEFAULT;
     private static float TEMP = VALUE;
+    private static IScaledResolutionMixin LAST_SCALED_RESOLUTION;
 
     public static void init() {
         if (INITIALIZED)
@@ -42,8 +47,24 @@ public final class GUIScale {
     }
 
     public static String sliderLabel() {
-        return I18n.format(GameSettings.Options.GUI_SCALE.getEnumString()) + ": " +
-               String.format("%.1f", TEMP);
+        return I18n.format(GameSettings.Options.GUI_SCALE.getEnumString()) + ": " + formattedSliderValues();
+    }
+
+    private static String formattedSliderValues() {
+        updateFloatFormat();
+        return String.format("%sx (%sx)",
+                             FLOAT_FORMAT.format(TEMP),
+                             FLOAT_FORMAT.format(LAST_SCALED_RESOLUTION.scaleFactorFloat()));
+    }
+
+    private static void updateFloatFormat() {
+        val fractionDigits = fractionDigits();
+        FLOAT_FORMAT.setMaximumFractionDigits(fractionDigits);
+        FLOAT_FORMAT.setMinimumFractionDigits(fractionDigits);
+    }
+
+    private static int fractionDigits() {
+        return Math.round((float) -Math.log10(GUI_SCALE_STEP));
     }
 
     public static void set(float guiScale) {
@@ -80,6 +101,10 @@ public final class GUIScale {
         getMinecraft().currentScreen.setWorldAndResolution(getMinecraft(),
                                                            scaledResolution.getScaledWidth(),
                                                            scaledResolution.getScaledHeight());
+    }
+
+    public static void lastScaledResolution(@NonNull IScaledResolutionMixin scaledResolution) {
+        LAST_SCALED_RESOLUTION = scaledResolution;
     }
 
     public static void save() {

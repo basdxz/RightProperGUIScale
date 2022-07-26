@@ -39,6 +39,7 @@ public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
         initScaledWidth(width);
         initScaledHeight(height);
         initScaleFactor();
+        updateLastScaledResolution();
     }
 
     @Unique
@@ -81,5 +82,10 @@ public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
     @Unique
     private void initScaleFactor() {
         scaleFactor = Math.max(Math.round(scaleFactorFloat), 1);
+    }
+
+    @Unique
+    private void updateLastScaledResolution() {
+        GUIScale.lastScaledResolution(this);
     }
 }
