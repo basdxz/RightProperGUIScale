@@ -26,26 +26,26 @@ public abstract class MinecraftMixin {
      * Injects right after the frame buffer has been creates and resets it to be the right size.
      *
      * @param instance    frame buffer
-     * @param setViewPort view port state
+     * @param setViewport viewport state
      */
     @Redirect(method = "loadScreen()V",
               at = @At(value = "INVOKE",
                        target = "net/minecraft/client/shader/Framebuffer.bindFramebuffer (Z)V",
                        ordinal = 0),
               require = 1)
-    private void fixNewFramebuffer(Framebuffer instance, boolean setViewPort) {
-        resetFramebuffer(instance, setViewPort);
+    private void fixNewFramebuffer(Framebuffer instance, boolean setViewport) {
+        resetFramebuffer(instance, setViewport);
     }
 
     /**
      * Resets the frame buffer to the current screen size.
      *
      * @param framebuffer frame buffer
-     * @param setViewPort view port state
+     * @param setViewport viewport state
      */
-    private void resetFramebuffer(@NonNull Framebuffer framebuffer, boolean setViewPort) {
+    private void resetFramebuffer(@NonNull Framebuffer framebuffer, boolean setViewport) {
         framebuffer.createBindFramebuffer(displayWidth, displayHeight);
-        framebuffer.bindFramebuffer(setViewPort);
+        framebuffer.bindFramebuffer(setViewport);
     }
 
     /**
