@@ -3,16 +3,23 @@ package com.github.basdxz.rightproperguiscale;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Tags.MODID, version = Tags.VERSION, name = Tags.MODNAME, acceptedMinecraftVersions = "[1.7.10]")
+import static com.github.basdxz.rightproperguiscale.Tags.*;
+
+@Mod(modid = MODID,
+     version = VERSION,
+     name = MODNAME,
+     acceptedMinecraftVersions = "[1.7.10]",
+     dependencies = "required-after:spongemixins@[1.1.0,);" + "required-after:falsepatternlib@[0.9.0,);")
 public class RightProperGUIScale {
-    @SidedProxy(clientSide = Tags.GROUPNAME + ".ClientProxy", serverSide = Tags.GROUPNAME + ".CommonProxy")
+    @SidedProxy(clientSide = GROUPNAME + ".ClientProxy", serverSide = GROUPNAME + ".CommonProxy")
     public static CommonProxy proxy;
-
-    public static final boolean IS_ENABLED = true;
+    public static final Logger logger = LogManager.getLogger(MODNAME);
 
     public static Boolean isEnabled() {
-        return IS_ENABLED;
+        return true;
     }
 
     @Mod.EventHandler

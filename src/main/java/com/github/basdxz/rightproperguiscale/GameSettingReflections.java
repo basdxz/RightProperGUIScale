@@ -8,14 +8,15 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 
 @UtilityClass
 public final class GameSettingReflections {
-    //TODO: better naming, this is not readable
     private static final String[] ENUM_FLOAT_FIELD_NAMES = new String[]{"enumFloat", "field_74385_A"};
     private static final String[] VALUE_MIN_FIELD_NAMES = new String[]{"valueMin", "field_148271_N"};
     private static final String[] VALUE_MAX_FIELD_NAMES = new String[]{"valueMax", "field_148272_O"};
     private static final String[] VALUE_STEP_FIELD_NAMES = new String[]{"valueStep", "field_148270_M"};
+    private static final String SUCCESS_MESSAGE = "Applied changes to GUI_SCALE enum";
 
     public static void apply() {
         guiScaleButtonIntoSlider();
+        logSuccess();
     }
 
     private static void guiScaleButtonIntoSlider() {
@@ -55,5 +56,9 @@ public final class GameSettingReflections {
         val field = ReflectionHelper.findField(clazz, fieldNameAliases);
         FieldUtils.removeFinalModifier(field);
         FieldUtils.writeField(field, target, value);
+    }
+
+    private static void logSuccess() {
+        RightProperGUIScale.logger.info(SUCCESS_MESSAGE);
     }
 }
