@@ -9,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 
 import static com.github.basdxz.rightproperguiscale.Tags.*;
 
+/**
+ * Forge entry point, loaded after the mixins have been added.
+ */
 @Mod(modid = MODID,
      version = VERSION,
      name = MODNAME,
@@ -16,11 +19,23 @@ import static com.github.basdxz.rightproperguiscale.Tags.*;
      guiFactory = GUI_FACTORY_PATH,
      dependencies = DEPENDENCIES)
 public class RightProperGUIScale {
+    /**
+     * Forge provided logger
+     */
     public static final Logger logger = LogManager.getLogger(MODNAME);
-
+    /**
+     * Forge injected proxy
+     */
     @SidedProxy(clientSide = CLIENT_PROXY_PATH, serverSide = SERVER_PROXY_PATH)
     public static CommonProxy proxy;
 
+    /**
+     * Executed shortly after the mod is loaded.
+     * <p>
+     * Redirects to the forge provided proxy.
+     *
+     * @param event Forge pre init event
+     */
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);

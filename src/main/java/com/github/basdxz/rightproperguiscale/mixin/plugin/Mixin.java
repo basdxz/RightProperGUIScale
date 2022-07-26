@@ -24,9 +24,8 @@ public enum Mixin implements IMixin {
     GuiVideoSettingsMixin(Side.CLIENT, always().and(avoid(OPTIFINE)), "minecraft.GuiVideoSettingsMixin"),
 
     GuiScreenMixin(Side.CLIENT, require(OPTIFINE), "optifine.GuiScreenMixin"),
-    TooltipProviderOptionsMixin(Side.CLIENT, require(OPTIFINE), "optifine.TooltipProviderOptionsMixin"),
+    TooltipProviderOptionsMixin(Side.CLIENT, require(OPTIFINE), "optifine.TooltipProviderOptionsMixin");
 
-    ;
     private final Side side;
     private final Predicate<List<ITargetedMod>> filter;
     private final String mixin;

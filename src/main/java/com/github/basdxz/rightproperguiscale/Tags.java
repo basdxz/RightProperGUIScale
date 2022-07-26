@@ -1,6 +1,12 @@
 package com.github.basdxz.rightproperguiscale;
 
-public class Tags {
+import lombok.experimental.*;
+
+/**
+ * String constants, mostly for the Forge injection point: {@link RightProperGUIScale}.
+ */
+@UtilityClass
+public final class Tags {
     // GRADLETOKEN_* will be replaced by your configuration values at build time
     public static final String MODID = "GRADLETOKEN_MODID";
     public static final String MODNAME = "GRADLETOKEN_MODNAME";
