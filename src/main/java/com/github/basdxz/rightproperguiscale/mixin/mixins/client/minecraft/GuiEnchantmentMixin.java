@@ -33,18 +33,18 @@ public abstract class GuiEnchantmentMixin {
     }
 
     private int bookViewportXPos(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_double_int((scaledResolution.scaledWidthDouble() - BOOK_RENDER_WIDTH) / 2F * scaledResolution.scaleFactorFloat());
+        return MathHelper.ceiling_double_int((scaledResolution.scaledWidthD() - BOOK_RENDER_WIDTH) / 2F * scaledResolution.scaleFactorF());
     }
 
     private int bookViewportYPos(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_double_int((scaledResolution.getScaledHeightDouble() - BOOK_RENDER_HEIGHT) / 2F * scaledResolution.scaleFactorFloat());
+        return MathHelper.ceiling_double_int((scaledResolution.scaledHeightD() - BOOK_RENDER_HEIGHT) / 2F * scaledResolution.scaleFactorF());
     }
 
     private int bookViewportWidth(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_float_int(BOOK_RENDER_WIDTH * scaledResolution.scaleFactorFloat());
+        return MathHelper.ceiling_float_int(BOOK_RENDER_WIDTH * scaledResolution.scaleFactorF());
     }
 
     private int bookViewportHeight(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_float_int(BOOK_RENDER_HEIGHT * scaledResolution.scaleFactorFloat());
+        return MathHelper.ceiling_float_int(BOOK_RENDER_HEIGHT * scaledResolution.scaleFactorF());
     }
 }

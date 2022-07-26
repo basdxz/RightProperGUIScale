@@ -43,11 +43,11 @@ public abstract class LoadingScreenRendererMixin {
     }
 
     private float rightOrtho(@NonNull IScaledResolutionMixin scaledResolution) {
-        return scaledResolution.scaledWidth() * scaledResolution.scaleFactorFloat();
+        return scaledResolution.scaledWidth() * scaledResolution.scaleFactorF();
     }
 
     private float bottomOrtho(@NonNull IScaledResolutionMixin scaledResolution) {
-        return scaledResolution.scaledHeight() * scaledResolution.scaleFactorFloat();
+        return scaledResolution.scaledHeight() * scaledResolution.scaleFactorF();
     }
 
     @Redirect(method = "setLoadingProgress(I)V",

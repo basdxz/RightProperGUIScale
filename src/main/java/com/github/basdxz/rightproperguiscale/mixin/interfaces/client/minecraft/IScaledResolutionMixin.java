@@ -5,11 +5,11 @@ public interface IScaledResolutionMixin {
 
     int scaledHeight();
 
-    double scaledWidthDouble();
+    double scaledWidthD();
 
-    double getScaledHeightDouble();
+    double scaledHeightD();
 
     int scaleFactor();
 
-    float scaleFactorFloat();
+    float scaleFactorF();
 }

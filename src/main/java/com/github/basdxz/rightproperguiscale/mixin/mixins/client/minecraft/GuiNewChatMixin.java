@@ -31,7 +31,7 @@ public abstract class GuiNewChatMixin {
                                            ScaledResolution scaledResolution) {
         lastMousePosX = mousePosX;
         lastMousePosY = mousePosY;
-        lastScaleFactorFloat = toIScaledResolutionMixin(scaledResolution).scaleFactorFloat();
+        lastScaleFactorFloat = toIScaledResolutionMixin(scaledResolution).scaleFactorF();
     }
 
     // Minecraft chat scale

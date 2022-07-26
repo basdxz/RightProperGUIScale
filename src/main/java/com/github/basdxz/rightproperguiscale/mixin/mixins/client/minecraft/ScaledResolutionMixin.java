@@ -29,7 +29,7 @@ public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
     @Shadow
     private int scaleFactor;
 
-    private float scaleFactorFloat;
+    private float scaleFactorF;
 
     @Inject(method = "<init>(Lnet/minecraft/client/Minecraft;II)V",
             at = @At(value = "RETURN"),
@@ -44,7 +44,7 @@ public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
 
     @Unique
     private void initScaleFactorFloat(int width, int height) {
-        scaleFactorFloat = maxScaleFactor(width, height);
+        scaleFactorF = maxScaleFactor(width, height);
     }
 
     @Unique
@@ -69,19 +69,19 @@ public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
 
     @Unique
     private void initScaledWidth(int width) {
-        scaledWidthD = width / scaleFactorFloat;
+        scaledWidthD = width / scaleFactorF;
         scaledWidth = MathHelper.ceiling_double_int(scaledWidthD);
     }
 
     @Unique
     private void initScaledHeight(int height) {
-        scaledHeightD = height / scaleFactorFloat;
+        scaledHeightD = height / scaleFactorF;
         scaledHeight = MathHelper.ceiling_double_int(scaledHeightD);
     }
 
     @Unique
     private void initScaleFactor() {
-        scaleFactor = Math.max(Math.round(scaleFactorFloat), 1);
+        scaleFactor = Math.max(Math.round(scaleFactorF), 1);
     }
 
     @Unique
