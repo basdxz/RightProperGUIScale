@@ -9,18 +9,11 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.MathHelper;
 
+import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig.*;
 import static net.minecraft.client.Minecraft.getMinecraft;
 
 @UtilityClass
 public final class GUIJiggler {
-    public static final int MIN_SCALED_WIDTH = 320;
-    public static final int MIN_SCALED_HEIGHT = 240;
-
-    public static final float GUI_SCALE_MIN = 1F;
-    public static final float GUI_SCALE_MAX = 10F;
-    public static final float GUI_SCALE_STEP = 0.1F;
-    public static final float GUI_SCALE_DEFAULT = 4.0F;
-
     private static final int VANILLA_MAX_GUI_SCALE = 3;
     private static final int VANILLA_AUTO_GUI_SCALE = 0;
 

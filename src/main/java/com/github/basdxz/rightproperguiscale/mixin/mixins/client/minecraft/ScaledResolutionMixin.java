@@ -10,7 +10,9 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.github.basdxz.rightproperguiscale.GUIJiggler.*;
+import static com.github.basdxz.rightproperguiscale.GUIJiggler.guiScaleAsFloat;
+import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig.MIN_SCALED_HEIGHT;
+import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig.MIN_SCALED_WIDTH;
 
 @Getter
 @Mixin(ScaledResolution.class)

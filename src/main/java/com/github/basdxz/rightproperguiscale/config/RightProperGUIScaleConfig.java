@@ -11,18 +11,41 @@ import lombok.experimental.*;
 @Config(modid = Tags.MODID)
 public final class RightProperGUIScaleConfig {
     @Config.Comment("Foo")
-    @Config.RangeFloat(min = 0F)
     @Config.LangKey("config.rightproperguiscale.min")
-    @Config.DefaultFloat(256)
+    @Config.DefaultFloat(1F)
+    @Config.RangeFloat(min = 0.1F, max = 1000F)
     public static float GUI_SCALE_MIN;
-
-    private static final String CONFIG_REGISTRATION_ERROR = "Failed to register config";
+    @Config.Comment("Foo")
+    @Config.LangKey("config.rightproperguiscale.max")
+    @Config.DefaultFloat(10F)
+    @Config.RangeFloat(min = 1F, max = 1000F)
+    public static float GUI_SCALE_MAX = 10F;
+    @Config.Comment("Foo")
+    @Config.LangKey("config.rightproperguiscale.step")
+    @Config.DefaultFloat(0.1F)
+    @Config.RangeFloat(min = 0.01F, max = 1000F)
+    public static float GUI_SCALE_STEP = 0.1F;
+    @Config.Comment("Foo")
+    @Config.LangKey("config.rightproperguiscale.default")
+    @Config.DefaultFloat(4F)
+    @Config.RangeFloat(min = 0.01F, max = 1000F)
+    public static float GUI_SCALE_DEFAULT;
+    @Config.Comment("Foo")
+    @Config.LangKey("config.rightproperguiscale.min_scaled_width")
+    @Config.DefaultInt(320)
+    @Config.RangeInt(min = 80, max = 15360)
+    public static int MIN_SCALED_WIDTH;
+    @Config.Comment("Foo")
+    @Config.LangKey("config.rightproperguiscale.min_scaled_height")
+    @Config.DefaultInt(240)
+    @Config.RangeInt(min = 60, max = 8640)
+    public static int MIN_SCALED_HEIGHT;
 
     public static void register() {
         try {
-            ConfigurationManager.registerConfig(RightProperGUIScale.class);
+            ConfigurationManager.registerConfig(RightProperGUIScaleConfig.class);
         } catch (ConfigException e) {
-            RightProperGUIScale.logger.error(CONFIG_REGISTRATION_ERROR);
+            RightProperGUIScale.logger.error("Failed to register config!");
         }
     }
 }
