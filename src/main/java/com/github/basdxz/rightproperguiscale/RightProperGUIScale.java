@@ -1,5 +1,6 @@
 package com.github.basdxz.rightproperguiscale;
 
+import com.github.basdxz.rightproperguiscale.mixin.plugin.Mixin;
 import com.github.basdxz.rightproperguiscale.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -10,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import static com.github.basdxz.rightproperguiscale.Tags.*;
 
 /**
- * Forge entry point, loaded after the mixins have been added.
+ * Forge entry point, loaded after {@link Mixin} has been processed.
  */
 @Mod(modid = MODID,
      version = VERSION,

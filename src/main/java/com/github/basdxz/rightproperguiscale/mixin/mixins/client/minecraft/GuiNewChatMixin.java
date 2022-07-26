@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 import static com.github.basdxz.rightproperguiscale.util.Util.toIScaledResolutionMixin;
 
+@Unique
 @Mixin(GuiNewChat.class)
 public abstract class GuiNewChatMixin {
     private static final int X_OFFSET = -3;

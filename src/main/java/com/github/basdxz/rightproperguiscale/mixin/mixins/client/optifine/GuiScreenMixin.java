@@ -9,19 +9,35 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 import static com.github.basdxz.rightproperguiscale.util.Util.mouseReleased;
 
+/**
+ * OptiFine specific Mixin to handle resolution scale updates.
+ */
 @Unique
 @Mixin(GuiScreen.class)
 public abstract class GuiScreenMixin {
+    /**
+     * Blindly
+     *
+     * @param mousePosX   mouse X position
+     * @param mousePosY   mouse Y position
+     * @param mouseButton mouse button state
+     * @param ci          mixin callback info
+     */
     @Inject(method = "mouseMovedOrUp(III)V",
             at = @At(value = "RETURN"),
             require = 1)
     private void updateResolutionScale(int mousePosX, int mousePosY, int mouseButton, CallbackInfo ci) {
-        if (isGuiVideoSettings() && mouseReleased(mouseButton))
+        if (isGUIVideoSettings() && mouseReleased(mouseButton))
             GUIScale.update();
     }
 
+    /**
+     * Checks if this GUI object is Video Settings
+     *
+     * @return is GUI Video Settings
+     */
     @SuppressWarnings("ConstantConditions")
-    private boolean isGuiVideoSettings() {
+    private boolean isGUIVideoSettings() {
         return ((Object) this) instanceof GuiVideoSettings;
     }
 }

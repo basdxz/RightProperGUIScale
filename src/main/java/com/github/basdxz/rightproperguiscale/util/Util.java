@@ -48,7 +48,7 @@ public final class Util {
      * Used to check the third parameter from: {@link GuiScreen#mouseMovedOrUp(int, int, int)}
      * to check if a mouse button has just been released.
      *
-     * @param mouseButton the mouse button value
+     * @param mouseButton the mouse button state
      * @return is the mouse button released
      */
     public static boolean mouseReleased(int mouseButton) {
