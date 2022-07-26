@@ -1,5 +1,6 @@
 package com.github.basdxz.rightproperguiscale;
 
+import com.github.basdxz.rightproperguiscale.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -11,17 +12,14 @@ import static com.github.basdxz.rightproperguiscale.Tags.*;
 @Mod(modid = MODID,
      version = VERSION,
      name = MODNAME,
-     acceptedMinecraftVersions = "[1.7.10]",
-     guiFactory = GROUPNAME + ".config.RightProperGUIScaleGuiFactory",
-     dependencies = "required-after:spongemixins@[1.1.0,);" + "required-after:falsepatternlib@[0.9.0,);")
+     acceptedMinecraftVersions = MINECRAFT_VERSION,
+     guiFactory = GUI_FACTORY_PATH,
+     dependencies = DEPENDENCIES)
 public class RightProperGUIScale {
-    @SidedProxy(clientSide = GROUPNAME + ".ClientProxy", serverSide = GROUPNAME + ".CommonProxy")
-    public static CommonProxy proxy;
     public static final Logger logger = LogManager.getLogger(MODNAME);
 
-    public static Boolean isEnabled() {
-        return true;
-    }
+    @SidedProxy(clientSide = CLIENT_PROXY_PATH, serverSide = SERVER_PROXY_PATH)
+    public static CommonProxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {

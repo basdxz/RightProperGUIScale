@@ -41,11 +41,18 @@ public final class RightProperGUIScaleConfig {
     @Config.RangeInt(min = 60, max = 8640)
     public static int MIN_SCALED_HEIGHT;
 
+    @Config.Ignore
+    private static final String CONFIG_REGISTRATION_FAILED = "Failed to register config!";
+
     public static void register() {
         try {
             ConfigurationManager.registerConfig(RightProperGUIScaleConfig.class);
         } catch (ConfigException e) {
-            RightProperGUIScale.logger.error("Failed to register config!");
+            logRegistrationFailure();
         }
+    }
+
+    private static void logRegistrationFailure() {
+        RightProperGUIScale.logger.error(CONFIG_REGISTRATION_FAILED);
     }
 }

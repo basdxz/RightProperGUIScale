@@ -1,12 +1,17 @@
 package com.github.basdxz.rightproperguiscale;
 
-// Use this class for Strings only. Do not import any classes here. It will lead to issues with Mixins if in use!
-
 public class Tags {
-
     // GRADLETOKEN_* will be replaced by your configuration values at build time
     public static final String MODID = "GRADLETOKEN_MODID";
     public static final String MODNAME = "GRADLETOKEN_MODNAME";
     public static final String VERSION = "GRADLETOKEN_VERSION";
     public static final String GROUPNAME = "GRADLETOKEN_GROUPNAME";
+
+    public static final String MINECRAFT_VERSION = "[1.7.10]";
+    public static final String DEPENDENCIES = "required-after:spongemixins@[1.1.0,);" +
+                                              "required-after:falsepatternlib@[0.9.0,);";
+    public static final String GUI_FACTORY_PATH = GROUPNAME + ".config.RightProperGUIScaleGuiFactory";
+    public static final String PROXY_PATH = GROUPNAME + ".proxy";
+    public static final String CLIENT_PROXY_PATH = PROXY_PATH + ".ClientProxy";
+    public static final String SERVER_PROXY_PATH = PROXY_PATH + ".ServerProxy";
 }

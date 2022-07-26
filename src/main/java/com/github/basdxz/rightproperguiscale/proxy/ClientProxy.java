@@ -1,4 +1,4 @@
-package com.github.basdxz.rightproperguiscale;
+package com.github.basdxz.rightproperguiscale.proxy;
 
 import com.github.basdxz.rightproperguiscale.command.GUIScaleCommand;
 import com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig;
