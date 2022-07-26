@@ -3,10 +3,15 @@ package com.github.basdxz.rightproperguiscale.config;
 import com.falsepattern.lib.config.Config;
 import com.falsepattern.lib.config.ConfigException;
 import com.falsepattern.lib.config.ConfigurationManager;
+import com.github.basdxz.rightproperguiscale.GUIScale;
 import com.github.basdxz.rightproperguiscale.RightProperGUIScale;
 import com.github.basdxz.rightproperguiscale.Tags;
+import lombok.*;
 import lombok.experimental.*;
 
+/**
+ * The configuration for {@link GUIScale}.
+ */
 @UtilityClass
 @Config(modid = Tags.MODID)
 public final class RightProperGUIScaleConfig {
@@ -44,15 +49,25 @@ public final class RightProperGUIScaleConfig {
     @Config.Ignore
     private static final String CONFIG_REGISTRATION_FAILED = "Failed to register config!";
 
+    /**
+     * Registers the config.
+     * <p>
+     * TODO: Update to register and load once FalsePatternLib updates.
+     */
     public static void register() {
         try {
             ConfigurationManager.registerConfig(RightProperGUIScaleConfig.class);
         } catch (ConfigException e) {
-            logRegistrationFailure();
+            logRegistrationFailure(e);
         }
     }
 
-    private static void logRegistrationFailure() {
-        RightProperGUIScale.logger.error(CONFIG_REGISTRATION_FAILED);
+    /**
+     * Logs registration failure.
+     *
+     * @param e config exception
+     */
+    private static void logRegistrationFailure(@NonNull ConfigException e) {
+        RightProperGUIScale.logger.error(CONFIG_REGISTRATION_FAILED, e);
     }
 }
