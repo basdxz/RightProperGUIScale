@@ -15,11 +15,13 @@ public final class GameSettingReflections {
     private static final String[] VALUE_MIN_FIELD_NAMES = new String[]{"valueMin", "field_148271_N"};
     private static final String[] VALUE_MAX_FIELD_NAMES = new String[]{"valueMax", "field_148272_O"};
     private static final String[] VALUE_STEP_FIELD_NAMES = new String[]{"valueStep", "field_148270_M"};
-    private static final String SUCCESS_MESSAGE = "Applied changes to GUI_SCALE enum";
+    private static final String SUCCESS_INFO = "Successfully Applied changes to GUI_SCALE enum!";
+    private static final String NEW_SETTINGS_INFO = "New Settings: [MIN:{}] [MAX:{}] [STEP:{}]";
 
     public static void apply() {
         guiScaleButtonIntoSlider();
         logSuccess();
+        logNewSettings();
     }
 
     private static void guiScaleButtonIntoSlider() {
@@ -61,7 +63,17 @@ public final class GameSettingReflections {
         FieldUtils.writeField(field, target, value);
     }
 
+    /**
+     * Logs reflection success.
+     */
     private static void logSuccess() {
-        RightProperGUIScale.logger.info(SUCCESS_MESSAGE);
+        RightProperGUIScale.logger.info(SUCCESS_INFO);
+    }
+
+    /**
+     * Logs new settings.
+     */
+    private static void logNewSettings() {
+        RightProperGUIScale.logger.info(NEW_SETTINGS_INFO, GUI_SCALE_MIN, GUI_SCALE_MAX, GUI_SCALE_STEP);
     }
 }
