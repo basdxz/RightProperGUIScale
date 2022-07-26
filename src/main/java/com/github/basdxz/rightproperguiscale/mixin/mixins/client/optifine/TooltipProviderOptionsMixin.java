@@ -19,7 +19,7 @@ public abstract class TooltipProviderOptionsMixin {
     /**
      * Injects blindly into when OptiFine is loading the lang for the Settings.
      * Redirects any invocation that would request the enum name of the {@link GameSettings.Options#GUI_SCALE} option,
-     * replacing it with {@value GUI_SCALE_UNLOCALIZED_TAG} or returning the original value.
+     * replacing it with {@link TooltipProviderOptionsMixin#GUI_SCALE_UNLOCALIZED_TAG} or returning the original value.
      *
      * @param option Setting option
      * @return enum string

@@ -16,7 +16,7 @@ import static com.github.basdxz.rightproperguiscale.util.Util.mouseReleased;
 @Mixin(GuiScreen.class)
 public abstract class GuiScreenMixin {
     /**
-     * Blindly
+     * Blindly //TODO finish
      *
      * @param mousePosX   mouse X position
      * @param mousePosY   mouse Y position
