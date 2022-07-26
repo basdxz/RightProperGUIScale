@@ -14,7 +14,7 @@ import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleCo
  * Reflects into {@link GameSettings.Options#GUI_SCALE}, turning the GUI Scale button into a slider and
  * updating the min/max/step of the settings with respect to {@link RightProperGUIScaleConfig}.
  * <p>
- * TODO: On FalseLib 0.10.* release, replace field names with UniversalFields
+ * TODO: On FalsePatternLib 0.10.* release, replace field names with UniversalFields
  */
 @UtilityClass
 public final class GameSettingReflections {

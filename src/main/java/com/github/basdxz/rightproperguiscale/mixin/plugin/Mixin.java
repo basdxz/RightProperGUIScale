@@ -22,7 +22,7 @@ import static com.github.basdxz.rightproperguiscale.mixin.plugin.TargetedMod.OPT
 @RequiredArgsConstructor
 public enum Mixin implements IMixin {
     /**
-     * Always required Mixins
+     * Always required Mixins.
      */
     GameSettingMixin(Side.CLIENT, always(), "minecraft.GameSettingMixin"),
     ScaledResolutionMixin(Side.CLIENT, always(), "minecraft.ScaledResolutionMixin"),
@@ -30,11 +30,11 @@ public enum Mixin implements IMixin {
     LoadingScreenRendererMixin(Side.CLIENT, always(), "minecraft.LoadingScreenRendererMixin"),
     GuiNewChatMixin(Side.CLIENT, always(), "minecraft.GuiNewChatMixin"),
     /**
-     * Better Loading Screen exclusive Mixins
+     * Better Loading Screen exclusive Mixins.
      */
     MinecraftMixin(Side.CLIENT, avoid(BETTER_LOADING_SCREEN), "minecraft.MinecraftMixin"),
     /**
-     * OptiFine exclusive Mixins
+     * OptiFine exclusive Mixins.
      */
     GuiVideoSettingsMixin(Side.CLIENT, always().and(avoid(OPTIFINE)), "minecraft.GuiVideoSettingsMixin"),
     /**

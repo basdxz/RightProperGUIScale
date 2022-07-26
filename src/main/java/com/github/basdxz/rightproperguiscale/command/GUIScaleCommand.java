@@ -2,11 +2,9 @@ package com.github.basdxz.rightproperguiscale.command;
 
 import com.github.basdxz.rightproperguiscale.GUIScale;
 import lombok.*;
-import net.minecraft.command.CommandBase;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.NumberInvalidException;
-import net.minecraft.command.WrongUsageException;
+import net.minecraft.command.*;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.IChatComponent;
 import net.minecraftforge.client.ClientCommandHandler;
 
 import java.util.Optional;
@@ -57,7 +55,7 @@ public class GUIScaleCommand extends CommandBase {
         return args.length != GUI_SCALE_COMMAND_ARGUMENT_COUNT;
     }
 
-    protected WrongUsageException newWrongUsageException() {
+    protected CommandException newWrongUsageException() {
         return new WrongUsageException(GUI_SCALE_COMMAND_USE_UNLOCALIZED);
     }
 
@@ -69,7 +67,7 @@ public class GUIScaleCommand extends CommandBase {
         }
     }
 
-    protected NumberInvalidException newNumberInvalidGUIScaleValueException(@NonNull String[] args) {
+    protected CommandException newNumberInvalidGUIScaleValueException(@NonNull String[] args) {
         return new NumberInvalidException(GUI_SCALE_COMMAND_NUMBER_INVALID, args[GUI_SCALE_ARGUMENT_INDEX]);
     }
 
@@ -82,7 +80,7 @@ public class GUIScaleCommand extends CommandBase {
         sender.addChatMessage(newSuccessMessage());
     }
 
-    protected ChatComponentTranslation newSuccessMessage() {
+    protected IChatComponent newSuccessMessage() {
         return new ChatComponentTranslation(GUI_SCALE_COMMAND_SUCCESS_UNLOCALIZED, GUIScale.asFloat());
     }
 }

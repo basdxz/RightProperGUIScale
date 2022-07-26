@@ -21,11 +21,11 @@ import static com.github.basdxz.rightproperguiscale.Tags.*;
      dependencies = DEPENDENCIES)
 public class RightProperGUIScale {
     /**
-     * Forge provided logger
+     * Logger provided by Forge.
      */
     public static final Logger logger = LogManager.getLogger(MODNAME);
     /**
-     * Forge injected proxy
+     * Proxy injected by Forge.
      */
     @SidedProxy(clientSide = CLIENT_PROXY_PATH, serverSide = SERVER_PROXY_PATH)
     public static CommonProxy proxy;

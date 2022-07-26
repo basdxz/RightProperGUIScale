@@ -7,6 +7,9 @@ import java.util.function.Predicate;
 
 import static com.falsepattern.lib.mixin.ITargetedMod.PredicateHelpers.startsWith;
 
+/**
+ * List of targeted mods used for mixing loading logic.
+ */
 @Getter
 @RequiredArgsConstructor
 public enum TargetedMod implements ITargetedMod {

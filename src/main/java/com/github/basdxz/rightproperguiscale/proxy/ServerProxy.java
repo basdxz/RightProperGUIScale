@@ -14,7 +14,7 @@ public class ServerProxy extends CommonProxy {
     /**
      * Throws an error if the mod is loaded on the server.
      *
-     * @param event Forge pre init event.
+     * @param event Forge pre init event
      */
     @Override
     public void preInit(FMLPreInitializationEvent event) {

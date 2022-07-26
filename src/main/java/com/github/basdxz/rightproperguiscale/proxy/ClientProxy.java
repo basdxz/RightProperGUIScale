@@ -10,7 +10,7 @@ public class ClientProxy extends CommonProxy {
     /**
      * Initializes the GUIScale singleton.
      *
-     * @param event Forge pre init event.
+     * @param event Forge pre init event
      */
     public void preInit(FMLPreInitializationEvent event) {
         GUIScale.init();
