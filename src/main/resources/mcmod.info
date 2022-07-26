@@ -11,7 +11,7 @@
             "basdxz"
         ],
         "credits": "",
-        "logoFile": "",
+        "logoFile": "logo.png",
         "screenshots": [],
         "dependencies": [
             "required-after:spongemixins@[1.1.0,)",
