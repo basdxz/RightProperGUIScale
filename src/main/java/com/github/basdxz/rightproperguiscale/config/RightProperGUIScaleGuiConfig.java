@@ -2,8 +2,8 @@ package com.github.basdxz.rightproperguiscale.config;
 
 import com.falsepattern.lib.config.ConfigException;
 import com.falsepattern.lib.config.SimpleGuiConfig;
+import com.github.basdxz.rightproperguiscale.GUIScale;
 import com.github.basdxz.rightproperguiscale.Tags;
-import com.github.basdxz.rightproperguiscale.reflection.GameSettingReflections;
 import net.minecraft.client.gui.GuiScreen;
 
 public class RightProperGUIScaleGuiConfig extends SimpleGuiConfig {
@@ -13,6 +13,6 @@ public class RightProperGUIScaleGuiConfig extends SimpleGuiConfig {
 
     @Override
     public void onGuiClosed() {
-        GameSettingReflections.apply();
+        GUIScale.configure();
     }
 }

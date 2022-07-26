@@ -8,8 +8,6 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.github.basdxz.rightproperguiscale.GUIScale.asInt;
-
 @Mixin(GameSettings.class)
 public abstract class GameSettingMixin {
     @Shadow
@@ -20,7 +18,7 @@ public abstract class GameSettingMixin {
             at = @At(value = "RETURN"),
             require = 1)
     private void initGUIScale(CallbackInfo ci) {
-        guiScale = asInt();
+        guiScale = GUIScale.asInt();
     }
 
     @Inject(method = "getKeyBinding(Lnet/minecraft/client/settings/GameSettings$Options;)Ljava/lang/String;",
@@ -28,7 +26,7 @@ public abstract class GameSettingMixin {
             cancellable = true,
             require = 1)
     private void guiScaleLabel(GameSettings.Options option, CallbackInfoReturnable<String> cir) {
-        if (Util.isScaleOption(option)) {
+        if (Util.isGUIScaleOption(option)) {
             cir.setReturnValue(GUIScale.sliderLabel());
             cir.cancel();
         }
@@ -39,7 +37,7 @@ public abstract class GameSettingMixin {
             cancellable = true,
             require = 1)
     private void setGuiScaleValue(GameSettings.Options option, float value, CallbackInfo ci) {
-        if (Util.isScaleOption(option)) {
+        if (Util.isGUIScaleOption(option)) {
             GUIScale.setTemp(value);
             ci.cancel();
         }
@@ -50,7 +48,7 @@ public abstract class GameSettingMixin {
             cancellable = true,
             require = 1)
     private void getGuiScaleValue(GameSettings.Options option, CallbackInfoReturnable<Float> cir) {
-        if (Util.isScaleOption(option)) {
+        if (Util.isGUIScaleOption(option)) {
             cir.setReturnValue(GUIScale.asFloat());
             cir.cancel();
         }
@@ -69,7 +67,7 @@ public abstract class GameSettingMixin {
     private int loadGuiScale(String guiScaleString) {
         float guiScale = Float.parseFloat(guiScaleString);
         GUIScale.set(guiScale);
-        return asInt();
+        return GUIScale.asInt();
     }
 
     @Redirect(method = "saveOptions()V",

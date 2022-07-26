@@ -1,5 +1,8 @@
 package com.github.basdxz.rightproperguiscale;
 
+import com.github.basdxz.rightproperguiscale.command.GUIScaleCommand;
+import com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig;
+import com.github.basdxz.rightproperguiscale.reflection.GameSettingReflections;
 import com.github.basdxz.rightproperguiscale.util.Util;
 import lombok.experimental.*;
 import lombok.*;
@@ -16,8 +19,27 @@ public final class GUIScale {
     private static final int VANILLA_MAX_GUI_SCALE = 3;
     private static final int VANILLA_AUTO_GUI_SCALE = 0;
 
+    private static boolean INITIALIZED = false;
     private static float VALUE = GUI_SCALE_DEFAULT;
     private static float TEMP = VALUE;
+
+    public static void init() {
+        if (INITIALIZED)
+            return;
+        RightProperGUIScaleConfig.register();
+        GameSettingReflections.apply();
+        GUIScaleCommand.register();
+        INITIALIZED = true;
+    }
+
+    public static void configure() {
+        GameSettingReflections.apply();
+        reapplyLimits();
+    }
+
+    private static void reapplyLimits() {
+        set(VALUE);
+    }
 
     public static String sliderLabel() {
         return I18n.format(GameSettings.Options.GUI_SCALE.getEnumString()) + ": " +

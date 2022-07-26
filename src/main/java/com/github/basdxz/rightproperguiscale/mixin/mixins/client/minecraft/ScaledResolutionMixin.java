@@ -1,5 +1,6 @@
 package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
 
+import com.github.basdxz.rightproperguiscale.GUIScale;
 import com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft.IScaledResolutionMixin;
 import lombok.*;
 import lombok.experimental.*;
@@ -10,7 +11,6 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.github.basdxz.rightproperguiscale.GUIScale.asFloat;
 import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig.MIN_SCALED_HEIGHT;
 import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig.MIN_SCALED_WIDTH;
 
@@ -48,7 +48,7 @@ public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
 
     @Unique
     private float maxScaleFactor(int width, int height) {
-        return Math.min(asFloat(), maxScaleFactorFromResolution(width, height));
+        return Math.min(GUIScale.asFloat(), maxScaleFactorFromResolution(width, height));
     }
 
     @Unique

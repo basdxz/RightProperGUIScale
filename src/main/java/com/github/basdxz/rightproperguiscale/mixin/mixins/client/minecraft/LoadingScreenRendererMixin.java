@@ -1,7 +1,6 @@
 package com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft;
 
 import com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft.IScaledResolutionMixin;
-import com.github.basdxz.rightproperguiscale.util.Util;
 import lombok.*;
 import net.minecraft.client.LoadingScreenRenderer;
 import net.minecraft.client.Minecraft;
@@ -10,6 +9,8 @@ import net.minecraft.client.shader.Framebuffer;
 import org.lwjgl.opengl.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
+
+import static com.github.basdxz.rightproperguiscale.util.Util.toIScaledResolutionMixin;
 
 @Unique
 @Mixin(LoadingScreenRenderer.class)
@@ -25,7 +26,7 @@ public abstract class LoadingScreenRendererMixin {
                        ordinal = 0),
               require = 1)
     private void fixCenteredText(double left, double right, double bottom, double top, double zNear, double zFar) {
-        setOrtho(Util.toIScaledResolutionMixin(field_146587_f), left, top, zNear, zFar);
+        setOrtho(toIScaledResolutionMixin(field_146587_f), left, top, zNear, zFar);
     }
 
     private void setOrtho(@NonNull IScaledResolutionMixin scaledResolution,
