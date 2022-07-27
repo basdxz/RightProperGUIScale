@@ -80,7 +80,7 @@ public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
      */
     @Unique
     private float maxScaleFactor(int width, int height) {
-        return Math.min(GUIScale.valueF(), maxScaleFactorFromResolution(width, height));
+        return Math.min(GUIScale.value(), maxScaleFactorFromResolution(width, height));
     }
 
     /**

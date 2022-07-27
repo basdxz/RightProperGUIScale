@@ -163,6 +163,6 @@ public class GUIScaleCommand extends CommandBase {
      * @return new success message
      */
     protected IChatComponent newSuccessMessage() {
-        return new ChatComponentTranslation(GUI_SCALE_COMMAND_SUCCESS_UNLOCALIZED, GUIScale.valueF());
+        return new ChatComponentTranslation(GUI_SCALE_COMMAND_SUCCESS_UNLOCALIZED, GUIScale.value());
     }
 }

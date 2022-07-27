@@ -87,7 +87,7 @@ public final class GUIScale {
      *
      * @return GUI Scale as float
      */
-    public static float valueF() {
+    public static float value() {
         return VALUE;
     }
 
@@ -97,7 +97,7 @@ public final class GUIScale {
      * @return GUI Scale as int
      * @see GUIScale#guiScaleToInt
      */
-    public static int valueI() {
+    public static int vanillaValue() {
         return VALUE_INT;
     }
 
