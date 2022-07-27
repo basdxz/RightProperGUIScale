@@ -18,7 +18,7 @@ public abstract class GameSettingMixin {
             at = @At(value = "RETURN"),
             require = 1)
     private void initGUIScale(CallbackInfo ci) {
-        guiScale = GUIScale.asInt();
+        guiScale = GUIScale.valueI();
     }
 
     @Inject(method = "getKeyBinding(Lnet/minecraft/client/settings/GameSettings$Options;)Ljava/lang/String;",
@@ -49,7 +49,7 @@ public abstract class GameSettingMixin {
             require = 1)
     private void getGuiScaleValue(GameSettings.Options option, CallbackInfoReturnable<Float> cir) {
         if (Util.isGUIScaleOption(option)) {
-            cir.setReturnValue(GUIScale.asFloat());
+            cir.setReturnValue(GUIScale.valueF());
             cir.cancel();
         }
     }
@@ -67,7 +67,7 @@ public abstract class GameSettingMixin {
     private int loadGuiScale(String guiScaleString) {
         float guiScale = Float.parseFloat(guiScaleString);
         GUIScale.set(guiScale);
-        return GUIScale.asInt();
+        return GUIScale.valueI();
     }
 
     @Redirect(method = "saveOptions()V",
@@ -81,6 +81,6 @@ public abstract class GameSettingMixin {
                        target = "Ljava/lang/StringBuilder;append(I)Ljava/lang/StringBuilder;"),
               require = 1)
     private StringBuilder saveGuiScale(StringBuilder instance, int minecraftGuiScale) {
-        return instance.append(GUIScale.asFloat());
+        return instance.append(GUIScale.valueF());
     }
 }
