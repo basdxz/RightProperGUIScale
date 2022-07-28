@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.*;
  */
 @Unique
 @Mixin(Minecraft.class)
-public abstract class MinecraftMixin {
+public abstract class MinecraftLoadingScreenSizeMixin {
     @Shadow
     public int displayWidth;
     @Shadow

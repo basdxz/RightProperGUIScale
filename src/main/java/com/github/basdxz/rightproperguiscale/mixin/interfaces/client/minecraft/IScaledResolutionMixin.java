@@ -1,10 +1,10 @@
 package com.github.basdxz.rightproperguiscale.mixin.interfaces.client.minecraft;
 
-import com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft.ScaledResolutionMixin;
+import com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft.ScaledResolutionPatchMixin;
 import net.minecraft.client.gui.ScaledResolution;
 
 /**
- * An interface applied to {@link ScaledResolution} by {@link ScaledResolutionMixin} to provide more expanded access.
+ * An interface applied to {@link ScaledResolution} by {@link ScaledResolutionPatchMixin} to provide more expanded access.
  */
 public interface IScaledResolutionMixin {
     /**

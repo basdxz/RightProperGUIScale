@@ -16,7 +16,7 @@ import static com.github.basdxz.rightproperguiscale.util.Util.toIScaledResolutio
  */
 @Unique
 @Mixin(GuiNewChat.class)
-public abstract class GuiNewChatMixin {
+public abstract class GuiNewChatMouseOffsetMixin {
     @Shadow
     @Final
     private Minecraft mc;

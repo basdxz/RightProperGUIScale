@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import static com.github.basdxz.rightproperguiscale.util.Util.mouseReleased;
 
 @Mixin(GuiVideoSettings.class)
-public abstract class GuiVideoSettingsMixin {
+public abstract class GuiVideoSettingsGUIScaleUpdateMixin {
     @Inject(method = "mouseClicked(III)V",
             at = @At(value = "FIELD",
                      target = "net/minecraft/client/gui/GuiVideoSettings.guiGameSettings:" +

@@ -14,7 +14,7 @@ import static com.github.basdxz.rightproperguiscale.util.Util.toIScaledResolutio
 
 @Unique
 @Mixin(LoadingScreenRenderer.class)
-public abstract class LoadingScreenRendererMixin {
+public abstract class LoadingScreenRendererSizeMixin {
     @Shadow
     private ScaledResolution field_146587_f;
     @Shadow

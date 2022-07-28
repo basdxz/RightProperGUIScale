@@ -16,7 +16,7 @@ import static com.github.basdxz.rightproperguiscale.util.Util.newIScaledResoluti
  * {@link IScaledResolutionMixin#scaleFactorF()} instead of {@link ScaledResolution#getScaleFactor()}.
  */
 @Mixin(GuiEnchantment.class)
-public abstract class GuiEnchantmentMixin {
+public abstract class GuiEnchantmentBookAlignmentMixin {
     /**
      * Copied from {@link GuiEnchantment#drawGuiContainerBackgroundLayer(float, int, int)}.
      */

@@ -22,7 +22,7 @@ import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleCo
 @Getter
 @Mixin(ScaledResolution.class)
 @Accessors(fluent = true, chain = true)
-public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
+public abstract class ScaledResolutionPatchMixin implements IScaledResolutionMixin {
     @Shadow
     private int scaledWidth;
     @Shadow
@@ -61,7 +61,7 @@ public abstract class ScaledResolutionMixin implements IScaledResolutionMixin {
     }
 
     /**
-     * Initializes {@link ScaledResolutionMixin#scaleFactorF}.
+     * Initializes {@link ScaledResolutionPatchMixin#scaleFactorF}.
      *
      * @param width  screen width
      * @param height screen height

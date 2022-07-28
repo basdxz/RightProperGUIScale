@@ -13,13 +13,13 @@ import static com.github.basdxz.rightproperguiscale.util.Util.isGUIScaleOption;
 @Pseudo
 @SuppressWarnings("UnresolvedMixinReference")
 @Mixin(targets = "TooltipProviderOptions", remap = false)
-public abstract class TooltipProviderOptionsMixin {
+public abstract class TooltipProviderOptionsGUIScaleLangMixin {
     private static final String GUI_SCALE_UNLOCALIZED_TAG = "options.rightProperGuiScale";
 
     /**
      * Injects blindly into when OptiFine is loading the lang for the Settings.
      * Redirects any invocation that would request the enum name of the {@link GameSettings.Options#GUI_SCALE} option,
-     * replacing it with {@link TooltipProviderOptionsMixin#GUI_SCALE_UNLOCALIZED_TAG} or returning the original value.
+     * replacing it with {@link TooltipProviderOptionsGUIScaleLangMixin#GUI_SCALE_UNLOCALIZED_TAG} or returning the original value.
      *
      * @param option Setting option
      * @return enum string
