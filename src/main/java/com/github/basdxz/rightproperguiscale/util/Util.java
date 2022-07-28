@@ -19,7 +19,7 @@ public final class Util {
     /**
      * Creates a new {@link IScaledResolutionMixin}.
      *
-     * @return New scaled resolution
+     * @return new scaled resolution
      */
     public static IScaledResolutionMixin newIScaledResolutionMixin() {
         return toIScaledResolutionMixin(newScaledResolution());
@@ -28,7 +28,7 @@ public final class Util {
     /**
      * Creates a new {@link ScaledResolution}.
      *
-     * @return New scaled resolution
+     * @return new scaled resolution
      */
     public static ScaledResolution newScaledResolution() {
         return new ScaledResolution(getMinecraft(), getMinecraft().displayWidth, getMinecraft().displayHeight);
@@ -37,8 +37,8 @@ public final class Util {
     /**
      * Converts a {@link ScaledResolution} into {@link IScaledResolutionMixin}.
      *
-     * @param scaledResolution The converted scaled instance to convert
-     * @return Converted scaled resolution
+     * @param scaledResolution converted scaled instance to convert
+     * @return converted scaled resolution
      */
     public static IScaledResolutionMixin toIScaledResolutionMixin(@NonNull ScaledResolution scaledResolution) {
         return (IScaledResolutionMixin) scaledResolution;
@@ -48,7 +48,7 @@ public final class Util {
      * Used to check the third parameter from: {@link GuiScreen#mouseMovedOrUp(int, int, int)}
      * to check if a mouse button has just been released.
      *
-     * @param mouseButton the mouse button state
+     * @param mouseButton mouse button state
      * @return is the mouse button released
      */
     public static boolean mouseReleased(int mouseButton) {
@@ -58,7 +58,7 @@ public final class Util {
     /**
      * Checks if the given option is {@link GameSettings.Options#GUI_SCALE}.
      *
-     * @param option The option to compare
+     * @param option option to compare
      * @return is the option GUI Scale
      */
     public static boolean isGUIScaleOption(GameSettings.Options option) {
