@@ -6,6 +6,7 @@ import lombok.experimental.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.settings.GameSettings;
+import net.minecraft.client.shader.Framebuffer;
 
 import static net.minecraft.client.Minecraft.getMinecraft;
 
@@ -63,5 +64,14 @@ public final class Util {
      */
     public static boolean isGUIScaleOption(GameSettings.Options option) {
         return GameSettings.Options.GUI_SCALE == option;
+    }
+
+    /**
+     * Renders out a framebuffer to the entire screen.
+     *
+     * @param framebuffer framebuffer
+     */
+    public static void framebufferRender(@NonNull Framebuffer framebuffer) {
+        framebuffer.framebufferRender(getMinecraft().displayWidth, getMinecraft().displayHeight);
     }
 }

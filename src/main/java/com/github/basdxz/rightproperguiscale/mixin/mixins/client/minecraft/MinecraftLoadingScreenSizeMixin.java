@@ -7,6 +7,8 @@ import net.minecraft.client.shader.Framebuffer;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
+import static com.github.basdxz.rightproperguiscale.util.Util.framebufferRender;
+
 /**
  * Mixin to fix the early {@link Minecraft} loading screen to use proper display width and height for it's
  * {@link Framebuffer}. Preventing wierd bars on the right/top, from the screen not being fully filled.
@@ -25,7 +27,7 @@ public abstract class MinecraftLoadingScreenSizeMixin {
     /**
      * Injects right after the frame buffer has been creates and resets it to be the right size.
      *
-     * @param instance    frame buffer
+     * @param instance    framebuffer
      * @param setViewport viewport state
      */
     @Redirect(method = "loadScreen()V",
@@ -40,7 +42,7 @@ public abstract class MinecraftLoadingScreenSizeMixin {
     /**
      * Resets the frame buffer to the current screen size.
      *
-     * @param framebuffer frame buffer
+     * @param framebuffer framebuffer
      * @param setViewport viewport state
      */
     private void resetFramebuffer(@NonNull Framebuffer framebuffer, boolean setViewport) {
@@ -51,7 +53,7 @@ public abstract class MinecraftLoadingScreenSizeMixin {
     /**
      * Injects before the {@link Framebuffer} has been rendered out to screen and renders the right size.
      *
-     * @param instance frame buffer
+     * @param instance framebuffer
      * @param width    screen width
      * @param height   screen height
      */
@@ -62,14 +64,5 @@ public abstract class MinecraftLoadingScreenSizeMixin {
               require = 1)
     private void fixFramebufferRender(Framebuffer instance, int width, int height) {
         framebufferRender(instance);
-    }
-
-    /**
-     * Renders out a frame buffer to the screen.
-     *
-     * @param framebuffer frame buffer
-     */
-    private void framebufferRender(@NonNull Framebuffer framebuffer) {
-        framebuffer.framebufferRender(displayWidth, displayHeight);
     }
 }
