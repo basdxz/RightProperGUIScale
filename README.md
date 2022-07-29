@@ -1,4 +1,4 @@
-# RightProperGUIScale
+# Right Proper GUI Scale
 ![image](https://user-images.githubusercontent.com/5740991/181659835-dc6a916c-9753-4dfb-9aad-459fbd9755eb.png)
 
 A fully-functional GUI Scale mod for Minecraft 1.7.10, written using Forge and Mixin.
