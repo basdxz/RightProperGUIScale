@@ -9,6 +9,9 @@ A fully-functional GUI Scale mod for Minecraft 1.7.10, written using Forge and M
 - An in-game command to change the GUI Scale in a more convenient way
 - Full support for OptiFine and SmoothFont
 
+## Releases
+- Avalible on [Modrinth](https://modrinth.com/mod/rightproperguiscale)!
+
 ## Dependencies
 - [FalsePattern Lib 0.9.*+](https://github.com/FalsePattern/FalsePatternLib)
 - [SpongeMixins 0.1.1+](https://github.com/TimeConqueror/SpongeMixins)
