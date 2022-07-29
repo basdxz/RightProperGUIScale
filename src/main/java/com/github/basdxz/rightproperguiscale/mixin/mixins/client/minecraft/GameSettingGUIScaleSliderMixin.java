@@ -56,7 +56,7 @@ public abstract class GameSettingGUIScaleSliderMixin {
             require = 1)
     private void setGuiScaleValue(GameSettings.Options option, float value, CallbackInfo ci) {
         if (Util.isGUIScaleOption(option))
-            setTempGUIScale(guiScale, ci);
+            setTempGUIScale(value, ci);
     }
 
     /**
