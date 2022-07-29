@@ -25,7 +25,7 @@ public enum Mixin implements IMixin {
     /**
      * Always required Mixins.
      */
-    GameSettingsInitGUIScale(CLIENT, always(), "minecraft.GameSettingsInitGUIScale"),
+    GameSettingsInitGUIScale(CLIENT, always(), "minecraft.GameSettingsInitGUIScaleMixin"),
     GameSettingGUIScaleSliderMixin(CLIENT, always(), "minecraft.GameSettingGUIScaleSliderMixin"),
     GameSettingGUIScaleLoadSaveMixin(CLIENT, always(), "minecraft.GameSettingGUIScaleLoadSaveMixin"),
     ScaledResolutionPatchMixin(CLIENT, always(), "minecraft.ScaledResolutionPatchMixin"),

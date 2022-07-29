@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
  * A Mixin for {@link GameSettings} that appends the GUI Scale with {@link GUIScale#vanillaValue()}.
  */
 @Mixin(GameSettings.class)
-public abstract class GameSettingsInitGUIScale {
+public abstract class GameSettingsInitGUIScaleMixin {
     @Shadow
     public int guiScale;
 
