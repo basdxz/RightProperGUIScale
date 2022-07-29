@@ -220,19 +220,22 @@ public final class GUIScale {
      * Updates Minecraft's GUI Scale.
      */
     private static void updateMinecraft() {
-        getMinecraft().gameSettings.guiScale = VALUE_INT;
+        val settings = getMinecraft().gameSettings;
+        if (settings != null)
+            settings.guiScale = VALUE_INT;
     }
 
     /**
      * Updates the currently open GUI size.
      */
     private static void updateCurrentGUI() {
-        if (getMinecraft().currentScreen == null)
+        val screen = getMinecraft().currentScreen;
+        if (screen == null)
             return;
         val scaledResolution = Util.newScaledResolution();
-        getMinecraft().currentScreen.setWorldAndResolution(getMinecraft(),
-                                                           scaledResolution.getScaledWidth(),
-                                                           scaledResolution.getScaledHeight());
+        screen.setWorldAndResolution(getMinecraft(),
+                                     scaledResolution.getScaledWidth(),
+                                     scaledResolution.getScaledHeight());
     }
 
     /**
