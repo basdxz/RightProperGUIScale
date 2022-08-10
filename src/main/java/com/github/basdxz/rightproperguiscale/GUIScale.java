@@ -76,7 +76,6 @@ public final class GUIScale {
     public static void init() {
         if (IS_INITIALIZED)
             return;
-        RightProperGUIScaleConfig.register();
         GameSettingReflections.apply();
         GUIScaleCommand.register();
         IS_INITIALIZED = true;
