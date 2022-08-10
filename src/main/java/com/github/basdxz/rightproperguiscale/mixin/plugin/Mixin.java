@@ -35,22 +35,16 @@ public enum Mixin implements IMixin {
     /**
      * Better Loading Screen avoiding Mixins.
      */
-    MinecraftLoadingScreenSizeMixin(CLIENT,
-                                    avoid(BETTER_LOADING_SCREEN),
-                                    "minecraft.MinecraftLoadingScreenSizeMixin"),
+    MinecraftLoadingScreenSizeMixin(CLIENT, avoid(BETTER_LOADING_SCREEN), "minecraft.MinecraftLoadingScreenSizeMixin"),
     /**
      * OptiFine avoiding Mixins.
      */
-    GuiVideoSettingsGUIScaleUpdateMixin(CLIENT,
-                                        always().and(avoid(OPTIFINE)),
-                                        "minecraft.GuiVideoSettingsGUIScaleUpdateMixin"),
+    GuiVideoSettingsGUIScaleUpdateMixin(CLIENT, avoid(OPTIFINE), "minecraft.GuiVideoSettingsGUIScaleUpdateMixin"),
     /**
      * OptiFine specific Mixins.
      */
     GuiScreenGUIScaleUpdateMixin(CLIENT, require(OPTIFINE), "optifine.GuiScreenGUIScaleUpdateMixin"),
-    TooltipProviderOptionsGUIScaleLangMixin(CLIENT,
-                                            require(OPTIFINE),
-                                            "optifine.TooltipProviderOptionsGUIScaleLangMixin");
+    TooltipProviderOptionsGUIScaleLangMixin(CLIENT, require(OPTIFINE), "optifine.TooltipProviderOptionsGUIScaleLangMixin");
 
     private final Side side;
     private final Predicate<List<ITargetedMod>> filter;
