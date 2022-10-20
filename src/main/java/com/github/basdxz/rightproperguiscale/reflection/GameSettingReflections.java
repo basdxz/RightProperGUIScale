@@ -74,7 +74,7 @@ public final class GameSettingReflections {
      * in {@link GameSettings.Options#GUI_SCALE} to {@link RightProperGUIScaleConfig#GUI_SCALE_MIN}.
      */
     private static void setGuiScaleSliderMin() {
-        setGuiScaleOptionField(GUI_SCALE_MIN, VALUE_MIN_FIELD_NAMES);
+        setGuiScaleOptionField((float) GUI_SCALE_MIN, VALUE_MIN_FIELD_NAMES);
     }
 
     /**
@@ -82,7 +82,7 @@ public final class GameSettingReflections {
      * in {@link GameSettings.Options#GUI_SCALE} to {@link RightProperGUIScaleConfig#GUI_SCALE_MAX}.
      */
     private static void setGuiScaleSliderMax() {
-        setGuiScaleOptionField(GUI_SCALE_MAX, VALUE_MAX_FIELD_NAMES);
+        setGuiScaleOptionField((float) GUI_SCALE_MAX, VALUE_MAX_FIELD_NAMES);
     }
 
     /**
@@ -90,7 +90,7 @@ public final class GameSettingReflections {
      * in {@link GameSettings.Options#GUI_SCALE} to {@link RightProperGUIScaleConfig#GUI_SCALE_STEP}.
      */
     private static void setGuiScaleSliderStep() {
-        setGuiScaleOptionField(GUI_SCALE_STEP, VALUE_STEP_FIELD_NAMES);
+        setGuiScaleOptionField((float) GUI_SCALE_STEP, VALUE_STEP_FIELD_NAMES);
     }
 
     /**

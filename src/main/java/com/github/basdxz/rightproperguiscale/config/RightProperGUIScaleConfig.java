@@ -1,7 +1,6 @@
 package com.github.basdxz.rightproperguiscale.config;
 
 import com.falsepattern.lib.config.Config;
-import com.falsepattern.lib.config.ConfigException;
 import com.falsepattern.lib.config.ConfigurationManager;
 import com.github.basdxz.rightproperguiscale.GUIScale;
 import com.github.basdxz.rightproperguiscale.RightProperGUIScale;
@@ -17,24 +16,24 @@ import lombok.experimental.*;
 public final class RightProperGUIScaleConfig {
     @Config.Comment("Minimum setting of the GUI Scale.")
     @Config.LangKey("config.rightproperguiscale.min")
-    @Config.DefaultFloat(1F)
-    @Config.RangeFloat(min = 0.1F, max = 1000F)
-    public static float GUI_SCALE_MIN;
+    @Config.DefaultDouble(1D)
+    @Config.RangeDouble(min = 0.1D, max = 1000D)
+    public static double GUI_SCALE_MIN;
     @Config.Comment("Maxiumum setting of the GUI Scale.")
     @Config.LangKey("config.rightproperguiscale.max")
-    @Config.DefaultFloat(10F)
-    @Config.RangeFloat(min = 1F, max = 1000F)
-    public static float GUI_SCALE_MAX = 10F;
+    @Config.DefaultDouble(10D)
+    @Config.RangeDouble(min = 1D, max = 1000D)
+    public static double GUI_SCALE_MAX = 10D;
     @Config.Comment("The step size of the GUI Scale slider.")
     @Config.LangKey("config.rightproperguiscale.step")
-    @Config.DefaultFloat(0.1F)
-    @Config.RangeFloat(min = 0.01F, max = 1000F)
-    public static float GUI_SCALE_STEP = 0.1F;
+    @Config.DefaultDouble(0.1D)
+    @Config.RangeDouble(min = 0.01D, max = 1000D)
+    public static double GUI_SCALE_STEP = 0.1D;
     @Config.Comment("The Default GUI Scale.")
     @Config.LangKey("config.rightproperguiscale.default")
-    @Config.DefaultFloat(4F)
-    @Config.RangeFloat(min = 0.01F, max = 1000F)
-    public static float GUI_SCALE_DEFAULT;
+    @Config.DefaultDouble(4D)
+    @Config.RangeDouble(min = 0.01D, max = 1000D)
+    public static double GUI_SCALE_DEFAULT;
     @Config.Comment("The minimum width the GUI will scale to.")
     @Config.LangKey("config.rightproperguiscale.min_scaled_width")
     @Config.DefaultInt(320)
@@ -56,8 +55,8 @@ public final class RightProperGUIScaleConfig {
      */
     public static void register() {
         try {
-            ConfigurationManager.registerConfig(RightProperGUIScaleConfig.class);
-        } catch (ConfigException e) {
+            ConfigurationManager.selfInit();
+        } catch (Exception e) {
             logRegistrationFailure(e);
         }
     }
@@ -67,7 +66,7 @@ public final class RightProperGUIScaleConfig {
      *
      * @param e config exception
      */
-    private static void logRegistrationFailure(@NonNull ConfigException e) {
+    private static void logRegistrationFailure(@NonNull Exception e) {
         RightProperGUIScale.logger.error(CONFIG_REGISTRATION_FAILED, e);
     }
 }

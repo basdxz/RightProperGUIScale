@@ -45,7 +45,7 @@ public final class GUIScale {
     /**
      * Actual value of the current GUI Scale.
      */
-    private static float VALUE = GUI_SCALE_DEFAULT;
+    private static float VALUE = (float) GUI_SCALE_DEFAULT;
     /**
      * Integer value of the current GUI Scale, clamped to expected Minecraft limits.
      *
@@ -67,7 +67,7 @@ public final class GUIScale {
      * @return default int value
      */
     private static int defaultIntValue() {
-        return guiScaleToInt(GUI_SCALE_DEFAULT);
+        return guiScaleToInt((float) GUI_SCALE_DEFAULT);
     }
 
     /**
@@ -181,7 +181,7 @@ public final class GUIScale {
      * @return the clamped GUI scale
      */
     private static float clampGUIScale(float guiScale) {
-        return Math.max(Math.min(guiScale, GUI_SCALE_MAX), GUI_SCALE_MIN);
+        return (float) Math.max(Math.min(guiScale, GUI_SCALE_MAX), GUI_SCALE_MIN);
     }
 
     /**
