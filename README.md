@@ -10,11 +10,12 @@ A fully-functional GUI Scale mod for Minecraft 1.7.10, written using Forge and M
 - Full support for OptiFine and SmoothFont
 
 ## Releases
-- Avalible on [Modrinth](https://modrinth.com/mod/rightproperguiscale)!
+- Available on [Modrinth](https://modrinth.com/mod/rightproperguiscale)!
 
 ## Dependencies
+
 - [FalsePattern Lib 0.9.*+](https://github.com/FalsePattern/FalsePatternLib)
-- [SpongeMixins 0.1.1+](https://github.com/TimeConqueror/SpongeMixins)
+- [SpongeMixins 0.1.1+](https://github.com/FalsePattern/GasStation)
 
 ## Mentions
 - [FalsePattern](https://github.com/FalsePattern): FalsePatternLib and help debugging mixins
