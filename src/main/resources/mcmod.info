@@ -15,7 +15,7 @@
         "screenshots": [],
         "dependencies": [
             "required-after:spongemixins@[1.1.0,)",
-            "required-after:falsepatternlib@[0.9.0,)"
+            "required-after:falsepatternlib@[0.10.13,)"
         ]
     }
 ]
