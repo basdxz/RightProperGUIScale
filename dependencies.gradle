@@ -1,8 +1,10 @@
 // Add your dependencies here
 
 dependencies {
-    compile("com.falsepattern:falsepatternlib-mc1.7.10:0.10.13:dev")
+    // FalsePatternLib
+    api("com.falsepattern:falsepatternlib-mc1.7.10:0.10.13:dev")
 
-    compileOnly("org.projectlombok:lombok:1.18.22")
-    annotationProcessor("org.projectlombok:lombok:1.18.22")
+    // Lombok
+    compileOnly("org.projectlombok:lombok:1.18.24")
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
 }

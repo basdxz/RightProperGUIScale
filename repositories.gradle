@@ -2,6 +2,14 @@
 
 repositories {
     maven {
-        url = "https://maven.falsepattern.com/"
+        name = "mavenpattern"
+        url = "https://mvn.falsepattern.com/releases/"
+    }
+    maven {
+        name = "cursemaven"
+        url = "https://mvn.falsepattern.com/cursemaven/"
+    }
+    flatDir {
+        dirs "lib"
     }
 }
