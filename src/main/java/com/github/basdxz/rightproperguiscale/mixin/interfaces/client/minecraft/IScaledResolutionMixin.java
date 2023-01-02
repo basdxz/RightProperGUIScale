@@ -4,58 +4,68 @@ import com.github.basdxz.rightproperguiscale.mixin.mixins.client.minecraft.Scale
 import net.minecraft.client.gui.ScaledResolution;
 
 /**
- * An interface applied to {@link ScaledResolution} by {@link ScaledResolutionPatchMixin} to provide more expanded access.
+ * An interface applied to {@link ScaledResolution} by {@link ScaledResolutionPatchMixin} to expand its functionality.
  */
 public interface IScaledResolutionMixin {
     /**
-     * Provides the scaled down width as an int.
-     * <p>
-     * Equivalent to using: {@link ScaledResolution#getScaledWidth()}.
+     * Bound to the {@link ScaledResolutionPatchMixin#screenWidth} field.
      *
-     * @return scaled width as an int
+     * @return the actual screen width
      */
-    int scaledWidth();
+    int screenWidth();
 
     /**
-     * Provides the scaled down height as an int.
-     * <p>
-     * Equivalent to using: {@link ScaledResolution#getScaledHeight()}.
+     * Bound to the {@link ScaledResolutionPatchMixin#screenHeight} field.
      *
-     * @return scaled height as an int
+     * @return the actual screen height
      */
-    int scaledHeight();
+    int screenHeight();
 
     /**
-     * Provides the scaled down width as a double.
+     * Bound to the {@link ScaledResolution#scaleFactor} field.
      * <p>
-     * Equivalent to using: {@link ScaledResolution#getScaledWidth_double()}.
+     * Always clamped to >= 1, as the original implementation does.
      *
-     * @return scaled width as a double
-     */
-    double scaledWidthD();
-
-    /**
-     * Provides the scaled down height as a double.
-     * <p>
-     * Equivalent to using: {@link ScaledResolution#getScaledHeight_double()}.
-     *
-     * @return scaled height as a double
-     */
-    double scaledHeightD();
-
-    /**
-     * Provides the scale factor as an int.
-     * <p>
-     * Equivalent to using: {@link ScaledResolution#getScaleFactor()}.
-     *
-     * @return scale factor as an int
+     * @return the <b>OLD</b> resolution scale factor
      */
     int scaleFactor();
 
     /**
-     * Provides the scale factor.
+     * Bound to the {@link ScaledResolutionPatchMixin#scaleFactorF} field.
      *
-     * @return scale factor as float
+     * @return the <b>NEW</b> resolution scale factor
      */
     float scaleFactorF();
+
+    /**
+     * Bound to the {@link ScaledResolution#scaledWidth} field.
+     *
+     * @return the scaled width
+     */
+    int scaledWidth();
+
+    /**
+     * Bound to the {@link ScaledResolution#scaledWidthD} field.
+     * <p>
+     * Equal to {@link ScaledResolution#scaledWidth} cast to a double, only provided because of compatibility.
+     *
+     * @return the scaled width as a double
+     */
+    double scaledWidthD();
+
+    /**
+     * Bound to the {@link ScaledResolution#scaledHeight} field.
+     *
+     * @return the scaled height
+     */
+    int scaledHeight();
+
+    /**
+     * Bound to the {@link ScaledResolution#scaledHeightD} field.
+     * <p>
+     * Equal to {@link ScaledResolution#scaledWidth} cast to a double, only provided because of compatibility.
+     *
+     * @return the scaled height as a double
+     */
+    double scaledHeightD();
 }

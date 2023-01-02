@@ -15,152 +15,98 @@ import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleCo
 import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig.MIN_SCALED_WIDTH;
 
 /**
- * Mixin for {@link ScaledResolution} to replace how it's calculated. This implementation modifies it to determine it
- * arithmetically rather than iteratively like in the standard implementation. Providing the benefit of fractional
- * scales but with the downside of causing non-exact integer scaling.
+ * Mixin for {@link ScaledResolution} to defer its creation
+ *
+ * @see IScaledResolutionMixin#scaleFactorF()
+ * @see IScaledResolutionMixin#scaledWidth()
+ * @see IScaledResolutionMixin#scaledHeight()
  */
 @Getter
 @Mixin(ScaledResolution.class)
 @Accessors(fluent = true, chain = true)
 public abstract class ScaledResolutionPatchMixin implements IScaledResolutionMixin {
+    @Unique
+    private int screenWidth;
+    @Unique
+    private int screenHeight;
+    @Shadow
+    private int scaleFactor;
+    @Unique
+    private float scaleFactorF;
     @Shadow
     private int scaledWidth;
     @Shadow
-    private int scaledHeight;
-    @Shadow
     private double scaledWidthD;
     @Shadow
-    private double scaledHeightD;
+    private int scaledHeight;
     @Shadow
-    private int scaleFactor;
-    /**
-     * The new scale factor float, more precise than the old {@link ScaledResolution#scaleFactor}.
-     */
-    @Unique
-    private float scaleFactorF;
+    private double scaledHeightD;
 
     /**
-     * Injects at the return of {@link ScaledResolution#ScaledResolution}, differing the actual logic to this point.
+     * Injects at the return of {@link ScaledResolution#ScaledResolution}, differing the actual initialization to this point.
      *
-     * @param minecraft minecraft
-     * @param width     screen width
-     * @param height    screen height
-     * @param ci        mixin callback info
+     * @param minecraft    minecraft
+     * @param screenWidth  screen width
+     * @param screenHeight screen height
+     * @param ci           mixin callback info
      */
     @Inject(method = "<init>(Lnet/minecraft/client/Minecraft;II)V",
             at = @At(value = "RETURN"),
             require = 1)
-    private void deferredConstructor(Minecraft minecraft, int width, int height, CallbackInfo ci) {
-        initScaleFactorF(width, height);
-        initScaleFactor();
-        initScaledWidthD(width);
-        initScaledWidth();
-        initScaledHeightD(height);
-        initScaledHeight();
+    private void deferredConstructor(Minecraft minecraft, int screenWidth, int screenHeight, CallbackInfo ci) {
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
+
+        updateScaleFactor();
+        updateScaledWidth();
+        updateScaledHeight();
         updateLastScaledResolution();
     }
 
     /**
-     * Initializes {@link ScaledResolutionPatchMixin#scaleFactorF}.
+     * Updates the fields {@link ScaledResolutionPatchMixin#scaleFactorF} and {@link ScaledResolution#scaleFactor}.
      *
-     * @param width  screen width
-     * @param height screen height
+     * @see IScaledResolutionMixin#scaleFactor
+     * @see IScaledResolutionMixin#scaleFactorF
      */
     @Unique
-    private void initScaleFactorF(int width, int height) {
-        scaleFactorF = maxScaleFactor(width, height);
-    }
+    private void updateScaleFactor() {
+        val minWidthScale = Math.max((float) screenWidth / (float) MIN_SCALED_WIDTH, 1F);
+        val minHeightScale = Math.max((float) screenHeight / (float) MIN_SCALED_HEIGHT, 1F);
+        val minDimensionScale = Math.min(minWidthScale, minHeightScale);
 
-    /**
-     * Provides the maximum scale factor.
-     *
-     * @param width  screen width
-     * @param height screen height
-     * @return maximum scale factor
-     */
-    @Unique
-    private float maxScaleFactor(int width, int height) {
-        return Math.min(GUIScale.value(), maxScaleFactorFromResolution(width, height));
-    }
-
-    /**
-     * Provides the maximum scale factor with respect to resolution.
-     *
-     * @param width  screen width
-     * @param height screen height
-     * @return maximum scale factor
-     */
-    @Unique
-    private float maxScaleFactorFromResolution(int width, int height) {
-        return Math.min(maxScaleFactorFromWidth(width), maxScaleFactorFromHeight(height));
-    }
-
-    /**
-     * Provides the maximum scale factor with respect to horizontal resolution.
-     *
-     * @param width screen width
-     * @return maximum scale factor
-     */
-    @Unique
-    private float maxScaleFactorFromWidth(int width) {
-        return Math.max((float) width / MIN_SCALED_WIDTH, 1F);
-    }
-
-    /**
-     * Provides the maximum scale factor with respect to vertical resolution.
-     *
-     * @param height screen height
-     * @return maximum scale factor
-     */
-    @Unique
-    private float maxScaleFactorFromHeight(int height) {
-        return Math.max((float) height / MIN_SCALED_HEIGHT, 1F);
-    }
-
-    /**
-     * Initializes {@link ScaledResolution#scaleFactor}.
-     */
-    @Unique
-    private void initScaleFactor() {
+        scaleFactorF = Math.min(GUIScale.value(), minDimensionScale);
         scaleFactor = Math.max(Math.round(scaleFactorF), 1);
     }
 
     /**
-     * Initializes {@link ScaledResolution#scaledWidthD}.
+     * Updates the fields {@link ScaledResolution#scaledWidth} and {@link ScaledResolution#scaledWidthD}.
      *
-     * @param width screen width
+     * @see IScaledResolutionMixin#scaledWidth()
+     * @see IScaledResolutionMixin#scaledWidthD()
      */
     @Unique
-    private void initScaledWidthD(int width) {
-        scaledWidthD = width / scaleFactorF;
+    private void updateScaledWidth() {
+        scaledWidth = MathHelper.ceiling_double_int(screenWidth / scaleFactorF);
+        scaledWidthD = scaledWidth;
     }
 
     /**
-     * Initializes {@link ScaledResolution#scaledWidth}.
+     * Updates the fields {@link ScaledResolution#scaledHeight} and {@link ScaledResolution#scaledHeightD}.
+     *
+     * @see IScaledResolutionMixin#scaledHeight()
+     * @see IScaledResolutionMixin#scaledHeightD()
      */
     @Unique
-    private void initScaledWidth() {
-        scaledWidth = MathHelper.ceiling_double_int(scaledWidthD);
-    }
-
-    /**
-     * Initializes {@link ScaledResolution#scaledHeightD}.
-     */
-    @Unique
-    private void initScaledHeightD(int height) {
-        scaledHeightD = height / scaleFactorF;
-    }
-
-    /**
-     * Initializes {@link ScaledResolution#scaledHeight}.
-     */
-    @Unique
-    private void initScaledHeight() {
-        scaledHeight = MathHelper.ceiling_double_int(scaledHeightD);
+    private void updateScaledHeight() {
+        scaledHeight = MathHelper.ceiling_double_int(screenHeight / scaleFactorF);
+        scaledHeightD = scaledHeight;
     }
 
     /**
      * Updates last scaled resolution in {@link GUIScale}.
+     * <p>
+     * Required to update the display the scale factor in the settings GUI.
      */
     @Unique
     private void updateLastScaledResolution() {

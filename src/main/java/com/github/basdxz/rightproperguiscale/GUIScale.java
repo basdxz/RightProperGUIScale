@@ -216,7 +216,7 @@ public final class GUIScale {
      * being the only way the GUI size can be more than {@value VANILLA_LARGE_GUI_SCALE}.
      *
      * @param guiScale gui scale as float
-     * @return gui scale as int
+     * @return vanilla-compatible gui scale setting
      */
     private static int vanillaGuiScaleSetting(float guiScale) {
         if (guiScale < VANILLA_SMALL_GUI_SCALE)
