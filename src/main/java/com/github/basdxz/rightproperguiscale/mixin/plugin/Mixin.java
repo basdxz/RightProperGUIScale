@@ -10,8 +10,7 @@ import java.util.function.Predicate;
 
 import static com.falsepattern.lib.mixin.IMixin.PredicateHelpers.*;
 import static com.falsepattern.lib.mixin.IMixin.Side.CLIENT;
-import static com.github.basdxz.rightproperguiscale.mixin.plugin.TargetedMod.BETTER_LOADING_SCREEN;
-import static com.github.basdxz.rightproperguiscale.mixin.plugin.TargetedMod.OPTIFINE;
+import static com.github.basdxz.rightproperguiscale.mixin.plugin.TargetedMod.*;
 
 
 /**
@@ -45,7 +44,12 @@ public enum Mixin implements IMixin {
      * OptiFine specific Mixins.
      */
     GuiScreenGUIScaleUpdateMixin(CLIENT, require(OPTIFINE), "optifine.GuiScreenGUIScaleUpdateMixin"),
-    TooltipProviderOptionsGUIScaleLangMixin(CLIENT, require(OPTIFINE), "optifine.TooltipProviderOptionsGUIScaleLangMixin");
+    TooltipProviderOptionsGUIScaleLangMixin(CLIENT, require(OPTIFINE), "optifine.TooltipProviderOptionsGUIScaleLangMixin"),
+    /**
+     * Better Questing specific Mixins.
+     */
+    RenderUtilsScissorAlignmentMixin(CLIENT, require(BETTER_QUESTING), "betterquesting.RenderUtilsScissorAlignmentMixin"),
+    ;
 
     private final Side side;
     private final Predicate<List<ITargetedMod>> filter;

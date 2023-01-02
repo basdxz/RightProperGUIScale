@@ -14,7 +14,9 @@ import static com.falsepattern.lib.mixin.ITargetedMod.PredicateHelpers.startsWit
 @RequiredArgsConstructor
 public enum TargetedMod implements ITargetedMod {
     OPTIFINE("OptiFine", false, startsWith("optifine")),
-    BETTER_LOADING_SCREEN("BetterLoadingScreen", false, startsWith("betterloadingscreen"));
+    BETTER_LOADING_SCREEN("BetterLoadingScreen", false, startsWith("betterloadingscreen")),
+    BETTER_QUESTING("BetterQuesting", true, startsWith("betterquesting")),
+    ;
 
     private final String modName;
     private final boolean loadInDevelopment;
