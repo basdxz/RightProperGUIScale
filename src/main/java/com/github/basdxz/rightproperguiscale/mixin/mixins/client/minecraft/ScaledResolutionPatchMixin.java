@@ -15,13 +15,10 @@ import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleCo
 import static com.github.basdxz.rightproperguiscale.config.RightProperGUIScaleConfig.MIN_SCALED_WIDTH;
 
 /**
- * Mixin for {@link ScaledResolution} to defer its creation
+ * Mixin for {@link ScaledResolution} to defer its creation.
  *
- * @see IScaledResolutionMixin#scaleFactorF()
- * @see IScaledResolutionMixin#scaledWidth()
- * @see IScaledResolutionMixin#scaledHeight()
+ * @see IScaledResolutionMixin
  */
-@Getter
 @Mixin(ScaledResolution.class)
 @Accessors(fluent = true, chain = true)
 public abstract class ScaledResolutionPatchMixin implements IScaledResolutionMixin {
@@ -33,14 +30,21 @@ public abstract class ScaledResolutionPatchMixin implements IScaledResolutionMix
     private int scaleFactor;
     @Unique
     private float scaleFactorF;
+    @Getter
     @Shadow
     private int scaledWidth;
     @Shadow
     private double scaledWidthD;
+    @Getter
     @Shadow
     private int scaledHeight;
     @Shadow
     private double scaledHeightD;
+
+    @Override
+    public float scaleFactor() {
+        return scaleFactorF;
+    }
 
     /**
      * Injects at the return of {@link ScaledResolution#ScaledResolution}, differing the actual initialization to this point.
@@ -66,16 +70,15 @@ public abstract class ScaledResolutionPatchMixin implements IScaledResolutionMix
     /**
      * Updates the fields {@link ScaledResolutionPatchMixin#scaleFactorF} and {@link ScaledResolution#scaleFactor}.
      *
-     * @see IScaledResolutionMixin#scaleFactor
-     * @see IScaledResolutionMixin#scaleFactorF
+     * @see IScaledResolutionMixin#scaleFactor()
      */
     @Unique
     private void updateScaleFactor() {
-        val minWidthScale = Math.max((float) screenWidth / (float) MIN_SCALED_WIDTH, 1F);
-        val minHeightScale = Math.max((float) screenHeight / (float) MIN_SCALED_HEIGHT, 1F);
-        val minDimensionScale = Math.min(minWidthScale, minHeightScale);
+        val maxWidthScale = Math.max((float) screenWidth / (float) MIN_SCALED_WIDTH, 1F);
+        val maxHeightScale = Math.max((float) screenHeight / (float) MIN_SCALED_HEIGHT, 1F);
+        val maxDimensionScale = Math.min(maxWidthScale, maxHeightScale);
 
-        scaleFactorF = Math.min(GUIScale.value(), minDimensionScale);
+        scaleFactorF = Math.min(GUIScale.value(), maxDimensionScale);
         scaleFactor = Math.max(Math.round(scaleFactorF), 1);
     }
 
@@ -83,7 +86,6 @@ public abstract class ScaledResolutionPatchMixin implements IScaledResolutionMix
      * Updates the fields {@link ScaledResolution#scaledWidth} and {@link ScaledResolution#scaledWidthD}.
      *
      * @see IScaledResolutionMixin#scaledWidth()
-     * @see IScaledResolutionMixin#scaledWidthD()
      */
     @Unique
     private void updateScaledWidth() {
@@ -95,7 +97,6 @@ public abstract class ScaledResolutionPatchMixin implements IScaledResolutionMix
      * Updates the fields {@link ScaledResolution#scaledHeight} and {@link ScaledResolution#scaledHeightD}.
      *
      * @see IScaledResolutionMixin#scaledHeight()
-     * @see IScaledResolutionMixin#scaledHeightD()
      */
     @Unique
     private void updateScaledHeight() {

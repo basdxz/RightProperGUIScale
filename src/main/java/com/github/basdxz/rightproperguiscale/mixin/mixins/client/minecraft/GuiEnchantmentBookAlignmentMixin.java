@@ -61,8 +61,8 @@ public abstract class GuiEnchantmentBookAlignmentMixin {
      * @return viewport X position
      */
     private int bookViewportXPos(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_double_int((scaledResolution.scaledWidthD() - BOOK_RENDER_WIDTH) /
-                                             2F * scaledResolution.scaleFactorF());
+        return MathHelper.ceiling_double_int((scaledResolution.scaledWidth() - BOOK_RENDER_WIDTH) /
+                                             2F * scaledResolution.scaleFactor());
     }
 
     /**
@@ -72,8 +72,8 @@ public abstract class GuiEnchantmentBookAlignmentMixin {
      * @return viewport Y position
      */
     private int bookViewportYPos(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_double_int((scaledResolution.scaledHeightD() - BOOK_RENDER_HEIGHT) /
-                                             2F * scaledResolution.scaleFactorF());
+        return MathHelper.ceiling_double_int((scaledResolution.scaledHeight() - BOOK_RENDER_HEIGHT) /
+                                             2F * scaledResolution.scaleFactor());
     }
 
     /**
@@ -83,7 +83,7 @@ public abstract class GuiEnchantmentBookAlignmentMixin {
      * @return viewport width
      */
     private int bookViewportWidth(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_float_int(BOOK_RENDER_WIDTH * scaledResolution.scaleFactorF());
+        return MathHelper.ceiling_float_int(BOOK_RENDER_WIDTH * scaledResolution.scaleFactor());
     }
 
     /**
@@ -93,6 +93,6 @@ public abstract class GuiEnchantmentBookAlignmentMixin {
      * @return viewport height
      */
     private int bookViewportHeight(@NonNull IScaledResolutionMixin scaledResolution) {
-        return MathHelper.ceiling_float_int(BOOK_RENDER_HEIGHT * scaledResolution.scaleFactorF());
+        return MathHelper.ceiling_float_int(BOOK_RENDER_HEIGHT * scaledResolution.scaleFactor());
     }
 }

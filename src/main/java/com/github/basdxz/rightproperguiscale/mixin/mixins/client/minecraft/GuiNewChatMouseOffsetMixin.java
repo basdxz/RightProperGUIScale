@@ -58,7 +58,7 @@ public abstract class GuiNewChatMouseOffsetMixin {
                                   int mouseYPos,
                                   CallbackInfoReturnable<IChatComponent> cir,
                                   ScaledResolution scaledResolution) {
-        storeVariables(mouseXPos, mouseYPos, toIScaledResolutionMixin(scaledResolution).scaleFactorF());
+        storeVariables(mouseXPos, mouseYPos, toIScaledResolutionMixin(scaledResolution).scaleFactor());
     }
 
     private void storeVariables(int mousePosX, int mousePosY, float lastScaleFactorFloat) {

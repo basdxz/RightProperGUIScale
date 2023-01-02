@@ -141,7 +141,7 @@ public final class GUIScale {
         updateFloatFormat();
         return String.format("%sx (%sx)",
                              FLOAT_FORMAT.format(TEMP),
-                             FLOAT_FORMAT.format(LAST_SCALED_RESOLUTION.scaleFactorF()));
+                             FLOAT_FORMAT.format(LAST_SCALED_RESOLUTION.scaleFactor()));
     }
 
     /**

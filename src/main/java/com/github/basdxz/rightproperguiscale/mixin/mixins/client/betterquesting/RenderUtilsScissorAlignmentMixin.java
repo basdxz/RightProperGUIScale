@@ -16,7 +16,10 @@ import java.nio.FloatBuffer;
 
 /**
  * A Mixin for {@link RenderUtils} to fix the offset and scale in {@link RenderUtils#startScissor}.
+ * <p>
+ * The warnings are supressed as the Minecraft Development plugin for Intellij IDEA fails to recongise the entry points.
  */
+@SuppressWarnings("ALL")
 @Mixin(value = RenderUtils.class, remap = false)
 public abstract class RenderUtilsScissorAlignmentMixin {
     /**
@@ -49,8 +52,8 @@ public abstract class RenderUtilsScissorAlignmentMixin {
                                                FloatBuffer fb,
                                                Matrix4f fm) {
         val scaledResolution = (IScaledResolutionMixin) r;
-        val scale = scaledResolution.scaleFactorF();
-        val scaledHeight = (float) scaledResolution.scaledHeightD();
+        val scale = scaledResolution.scaleFactor();
+        val scaledHeight = (float) scaledResolution.scaledHeight();
 
         // Does not change the behavior of the original code, simply makes it scale with the float scale factor.
         val posX = safeRound((rect.getX() * scale * fm.m00) + (fm.m30 * scale));

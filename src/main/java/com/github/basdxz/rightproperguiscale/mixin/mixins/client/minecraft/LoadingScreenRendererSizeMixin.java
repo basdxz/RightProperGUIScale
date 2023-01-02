@@ -71,7 +71,7 @@ public abstract class LoadingScreenRendererSizeMixin {
      * @return distance to the right horizontal clipping planes
      */
     private float rightOrtho(@NonNull IScaledResolutionMixin scaledResolution) {
-        return scaledResolution.scaledWidth() * scaledResolution.scaleFactorF();
+        return scaledResolution.scaledWidth() * scaledResolution.scaleFactor();
     }
 
     /**
@@ -82,7 +82,7 @@ public abstract class LoadingScreenRendererSizeMixin {
      * @return distance to the bottom vertical clipping planes
      */
     private float bottomOrtho(@NonNull IScaledResolutionMixin scaledResolution) {
-        return scaledResolution.scaledHeight() * scaledResolution.scaleFactorF();
+        return scaledResolution.scaledHeight() * scaledResolution.scaleFactor();
     }
 
     /**
