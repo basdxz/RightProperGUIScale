@@ -27,11 +27,19 @@ import static net.minecraft.client.Minecraft.getMinecraft;
 @UtilityClass
 public final class GUIScale {
     /**
-     * The default minecraft Large GUI Scale setting.
+     * The vanilla Minecraft Small GUI Scale setting.
      */
-    private static final int VANILLA_MAX_GUI_SCALE = 3;
+    private static final int VANILLA_SMALL_GUI_SCALE = 1;
     /**
-     * The default minecraft Auto GUI Scale setting.
+     * The vanilla Minecraft Normal GUI Scale setting.
+     */
+    private static final int VANILLA_NORMAL_GUI_SCALE = 2;
+    /**
+     * The vanilla Minecraft Large GUI Scale setting.
+     */
+    private static final int VANILLA_LARGE_GUI_SCALE = 3;
+    /**
+     * The vanilla Minecraft Auto GUI Scale setting.
      */
     private static final int VANILLA_AUTO_GUI_SCALE = 0;
     /**
@@ -49,7 +57,7 @@ public final class GUIScale {
     /**
      * Integer value of the current GUI Scale, clamped to expected Minecraft limits.
      *
-     * @see GUIScale#guiScaleToInt
+     * @see GUIScale#vanillaGuiScaleSetting
      */
     private static int VALUE_INT = defaultIntValue();
     /**
@@ -67,7 +75,7 @@ public final class GUIScale {
      * @return default int value
      */
     private static int defaultIntValue() {
-        return guiScaleToInt((float) GUI_SCALE_DEFAULT);
+        return vanillaGuiScaleSetting((float) GUI_SCALE_DEFAULT);
     }
 
     /**
@@ -94,7 +102,7 @@ public final class GUIScale {
      * Provides GUI Scale as int, clamped to expected Minecraft limits.
      *
      * @return GUI Scale as int
-     * @see GUIScale#guiScaleToInt
+     * @see GUIScale#vanillaGuiScaleSetting
      */
     public static int vanillaValue() {
         return VALUE_INT;
@@ -198,21 +206,24 @@ public final class GUIScale {
      */
     private static void pushTemp() {
         VALUE = TEMP;
-        VALUE_INT = guiScaleToInt(TEMP);
+        VALUE_INT = vanillaGuiScaleSetting(TEMP);
     }
 
     /**
-     * Converts the provided GUI Scale as float into int, approximating values from 1 to {@value VANILLA_MAX_GUI_SCALE}
-     * or providing {@value VANILLA_AUTO_GUI_SCALE} if the value is larger.
+     * Closest equivalent Vanilla GUI Scale setting.
      * <p>
-     * A lot of other mods rely on the integer GUI scale 0 being the only way the GUI size can be more than 3.
+     * A lot of other mods rely on the integer GUI scale {@value VANILLA_AUTO_GUI_SCALE},
+     * being the only way the GUI size can be more than {@value VANILLA_LARGE_GUI_SCALE}.
      *
      * @param guiScale gui scale as float
      * @return gui scale as int
      */
-    private static int guiScaleToInt(float guiScale) {
-        val intGuiScale = MathHelper.ceiling_float_int(VALUE);
-        return intGuiScale > VANILLA_MAX_GUI_SCALE ? VANILLA_AUTO_GUI_SCALE : intGuiScale;
+    private static int vanillaGuiScaleSetting(float guiScale) {
+        if (guiScale < VANILLA_SMALL_GUI_SCALE)
+            return VANILLA_SMALL_GUI_SCALE;
+        if (guiScale <= VANILLA_LARGE_GUI_SCALE)
+            return MathHelper.ceiling_float_int(VALUE);
+        return VANILLA_AUTO_GUI_SCALE;
     }
 
     /**
