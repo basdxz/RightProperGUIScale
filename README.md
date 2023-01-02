@@ -14,7 +14,7 @@ A fully-functional GUI Scale mod for Minecraft 1.7.10, written using Forge and M
 
 ## Dependencies
 - [FalsePattern Lib 0.10.13+](https://github.com/FalsePattern/FalsePatternLib)
-- [SpongeMixins 0.1.1+](https://github.com/FalsePattern/GasStation)
+- [GasStation 0.5.1+](https://github.com/FalsePattern/GasStation)
 
 ## Mentions
 - [FalsePattern](https://github.com/FalsePattern): FalsePatternLib and help debugging mixins
