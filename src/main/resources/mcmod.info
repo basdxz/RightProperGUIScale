@@ -14,7 +14,7 @@
         "logoFile": "logo.png",
         "screenshots": [],
         "dependencies": [
-            "required-after:gasstation@[0.5.1,)",
+            "required-after:spongemixins@[1.1.0,)",
             "required-after:falsepatternlib@[0.10.14,)"
         ]
     }

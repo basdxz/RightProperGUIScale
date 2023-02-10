@@ -14,7 +14,7 @@ public final class Tags {
     public static final String GROUPNAME = "GRADLETOKEN_GROUPNAME";
 
     public static final String MINECRAFT_VERSION = "[1.7.10]";
-    public static final String DEPENDENCIES = "required-after:gasstation@[0.5.1,);" +
+    public static final String DEPENDENCIES = "required-after:spongemixins@[1.1.0,);" +
                                               "required-after:falsepatternlib@[0.10.14,);";
     public static final String GUI_FACTORY_PATH = GROUPNAME + ".config.RightProperGUIScaleGuiFactory";
     public static final String PROXY_PATH = GROUPNAME + ".proxy";
