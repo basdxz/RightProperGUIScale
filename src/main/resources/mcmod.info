@@ -15,7 +15,7 @@
         "screenshots": [],
         "dependencies": [
             "required-after:gasstation@[0.5.1,)",
-            "required-after:falsepatternlib@[0.10.13,)"
+            "required-after:falsepatternlib@[0.10.14,)"
         ]
     }
 ]

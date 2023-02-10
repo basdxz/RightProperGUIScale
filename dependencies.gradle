@@ -13,7 +13,7 @@ def deobfCurse(curseDep) {
 
 dependencies {
     // FalsePatternLib
-    api("com.falsepattern:falsepatternlib-mc1.7.10:0.10.13:dev")
+    api("com.falsepattern:falsepatternlib-mc1.7.10:0.10.14:dev")
 
     // Lombok
     compileOnly("org.projectlombok:lombok:1.18.24")
