@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "minVersion": "0.7.11",
+  "package": "com.github.basdxz.rightproperguiscale.mixin.mixins",
+  "plugin": "com.github.basdxz.rightproperguiscale.mixin.plugin.MixinPlugin",
+  "refmap": "mixins.rightproperguiscale.refmap.json",
+  "target": "@env(DEFAULT)",
+  "compatibilityLevel": "JAVA_8"
+}
+
