@@ -9,7 +9,4 @@ repositories {
         name = "cursemaven"
         url = "https://mvn.falsepattern.com/cursemaven/"
     }
-    flatDir {
-        dirs "lib"
-    }
 }

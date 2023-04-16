@@ -12,13 +12,13 @@ def deobfCurse(curseDep) {
 }
 
 dependencies {
-    // FalsePatternLib
-    api("com.falsepattern:falsepatternlib-mc1.7.10:0.10.14:dev")
-
     // Lombok
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
 
+    // FalsePatternLib
+    implementation("com.falsepattern:falsepatternlib-mc1.7.10:0.10.14:dev")
+
     // Better Questing 3.0.328
-    api(deobfCurse("better-questing-238856:2950244"))
+    implementation(deobfCurse("better-questing-238856:2950244"))
 }
