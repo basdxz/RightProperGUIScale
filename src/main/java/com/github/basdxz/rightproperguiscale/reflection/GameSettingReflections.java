@@ -24,6 +24,12 @@ public final class GameSettingReflections {
     private static final String[] VALUE_STEP_FIELD_NAMES = new String[]{"valueStep", "field_148270_M"};
     private static final String SUCCESS_INFO = "Successfully Applied changes to GUI_SCALE enum!";
     private static final String NEW_SETTINGS_INFO = "New Settings: [MIN:{}] [MAX:{}] [STEP:{}]";
+    private static final int JVM_VERSION;
+
+    static {
+        JVM_VERSION = Integer.parseInt(System.getProperty("java.specification.version"));
+    }
+
     /**
      * Flag state which is set to true after the first call to
      * {@link GameSettingReflections#guiScaleButtonIntoSlider()}.
@@ -122,7 +128,11 @@ public final class GameSettingReflections {
                                      @NonNull Object value,
                                      @NonNull String... fieldNameAliases) {
         val field = ReflectionHelper.findField(clazz, fieldNameAliases);
-        FieldUtils.removeFinalModifier(field);
+        if (JVM_VERSION < 12) {
+            // Game will crash while using java 12+ to launch
+            // and throws an exception that in java 12+ final cannot be removed.
+            FieldUtils.removeFinalModifier(field);
+        }
         FieldUtils.writeField(field, target, value);
     }
 
