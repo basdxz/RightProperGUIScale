@@ -122,7 +122,6 @@ public final class GameSettingReflections {
                                      @NonNull Object value,
                                      @NonNull String... fieldNameAliases) {
         val field = ReflectionHelper.findField(clazz, fieldNameAliases);
-        FieldUtils.removeFinalModifier(field);
         FieldUtils.writeField(field, target, value);
     }
 
